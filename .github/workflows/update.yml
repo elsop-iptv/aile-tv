@@ -5,6 +5,8 @@ on:
     - cron: "0 3 * * *"   # her gun 03:00 UTC (Turkiye 06:00)
   workflow_dispatch:      # elle calistirma
 
+concurrency: liste
+
 permissions:
   contents: write
 
@@ -27,6 +29,10 @@ jobs:
           echo "Kanal sayisi: $n"
           if [ "$n" -lt 150 ]; then echo "Cok az kanal, eski liste korunuyor"; rm playlist.new.m3u; exit 0; fi
           mv playlist.new.m3u playlist.m3u
+      - name: CNN Turk resmi linkini ekle
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python refresh_cnn.py playlist.m3u
       - name: Degistiyse kaydet
         run: |
           git config user.name "github-actions[bot]"
