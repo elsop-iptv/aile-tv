@@ -18,6 +18,14 @@ API = "https://iptv-org.github.io/api/"
 COUNTRIES = {"TR", "DE"}
 BLOCKED_CATEGORIES = {"xxx", "shop"}
 FAVORITES = ["TRT1.tr", "CNNTurk.tr", "TVNET.tr"]  # en cok izlenenler, en ustte
+# Dizi, film ve yarisma kanallari: ayrica kendi grubunda da gosterilir.
+# Su an calisan yayini olmayanlar (Show, NOW, Beyaz, Teve2) bulunursa kendiliginden eklenir.
+DIZI_FILM = [
+    "TRT1.tr", "ATV.tr", "KanalD.tr", "StarTV.tr", "TV8.tr", "Kanal7.tr", "ShowTV.tr", "NOWTV.tr", "FOXTV.tr",
+    "BeyazTV.tr", "Teve2.tr", "TV360.tr", "KanalDDrama.tr", "EuroD.tr", "EuroStar.tr", "Kanal7Avrupa.tr",
+    "ATVAvrupa.tr", "ShowTurk.tr", "ShowMax.tr", "GrandCinema.tr", "TRT2.tr", "TGRTBelgesel.tr",
+]
+DIZI_GROUP = "TR · Dizi / Film / Yarisma"
 DEFAULT_UA = "Mozilla/5.0 (Linux; Android 12; Google TV) AppleWebKit/537.36 Chrome/120 Safari/537.36"
 TIMEOUT = 10
 # GitHub sunuculari ABD'de: orada 403 (bolge kisitlamasi) veren link evde calisabilir.
@@ -40,6 +48,11 @@ BLOCKED_NAMES = re.compile(
 )
 
 # Almanya listesinde yer alan ama Italyanca/Ispanyolca/Fransizca olan kanallar (gereksiz kalabalik)
+# Ucretli (abonelikli) kanallar ve Turkce/Almanca olmayan yayinlar: hic eklenmez.
+PAID_OR_FOREIGN = re.compile(
+    r"^(Sky |Sky$|Nicktoons|Nick Jr|GEM |GEM$|Curiosity NOW|Ost West|Disney|beIN|S Sport|Tivibu|Digiturk|"
+    r"Exxen|BluTV|DAZN|MagentaMusik)", re.I)
+
 FOREIGN_NAMES = re.compile(
     r"de Pluto|by Pluto|x Pluto|Pluto TV (Alberto|Animales|Animaux|Aventure|Catastrofes|Christmas tutto|Cine |"
     r"Cinema |Cocina|Comedia|Comedie|Cucina|Cuisine|Diseno|Documentari|Film |French|Gasolina|Histoire|Historia|"
@@ -92,7 +105,7 @@ def group_for(ch):
 
 
 GROUP_ORDER = [
-    "★ Favoriler", "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Spor", "TR · Diger",
+    "★ Favoriler", DIZI_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Spor", "TR · Diger",
     "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Sport", "DE · Sonstige",
 ]
 
@@ -136,6 +149,7 @@ def main(out_path="playlist.m3u"):
         and not (set(c.get("categories") or []) & BLOCKED_CATEGORIES)
         and not BLOCKED_NAMES.search(c["name"])
         and not FOREIGN_NAMES.search(c["name"])
+        and not PAID_OR_FOREIGN.search(c["name"])
     }
     candidates = [s for s in streams + EXTRA_STREAMS if s.get("channel") in wanted]
     print(f"{len(wanted)} kanal, {len(candidates)} link test ediliyor...")
@@ -158,7 +172,9 @@ def main(out_path="playlist.m3u"):
         groups = [group_for(ch)]
         if cid in FAVORITES:
             groups.insert(0, "★ Favoriler")
-        if groups[-1] == "TR · TRT" and set(ch.get("categories") or []) & {"kids", "animation"}:
+        if cid in DIZI_FILM or (ch["country"] == "TR" and set(ch.get("categories") or []) & {"series", "movies"}):
+            groups.append(DIZI_GROUP)
+        if group_for(ch) == "TR · TRT" and set(ch.get("categories") or []) & {"kids", "animation"}:
             groups.append("TR · Cocuk")
         for g in groups:
             entries.append((g, ch, s))
@@ -166,6 +182,8 @@ def main(out_path="playlist.m3u"):
     def sort_key(e):
         g, ch, _ = e
         fav = FAVORITES.index(ch["id"]) if g == "★ Favoriler" and ch["id"] in FAVORITES else 0
+        if g == DIZI_GROUP:
+            fav = DIZI_FILM.index(ch["id"]) if ch["id"] in DIZI_FILM else len(DIZI_FILM)
         return (GROUP_ORDER.index(g), fav, ch["name"].lower())
 
     entries.sort(key=sort_key)
@@ -191,7 +209,7 @@ def main(out_path="playlist.m3u"):
     print(f"\nCalisan kanal: {len(best)} / {len(wanted)}  ->  {out_path}{extra}")
     for g in GROUP_ORDER:
         if counts[g]:
-            print(f"  {g}: {counts[g]}")
+            print(f"  {g}: {counts[g]}".encode("ascii", "replace").decode())
     missing = [f for f in FAVORITES if f not in best]
     if missing:
         print("UYARI - calismayan favoriler:", ", ".join(missing))

@@ -5,6 +5,32 @@ https://tv-trt1.medya.trt.com.tr/master.m3u8
 http://85.117.61.84/cnnturk/index.m3u8
 #EXTINF:-1 tvg-id="TVNET.tr" tvg-logo="https://i.imgur.com/mQo8yWQ.png" group-title="★ Favoriler",TVNET (1080p)
 https://tvnet-live.lg.mncdn.com/tvnet-live/tvnet/playlist.m3u8
+#EXTINF:-1 tvg-id="TRT1.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/TRT_1_logo_%282021-%29.svg/960px-TRT_1_logo_%282021-%29.svg.png" group-title="TR · Dizi / Film / Yarisma",TRT 1 (1440p)
+https://tv-trt1.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="ATV.tr" tvg-logo="https://i.imgur.com/HyVUwFC.png" group-title="TR · Dizi / Film / Yarisma",ATV (1080p)
+https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv_1080p.m3u8
+#EXTINF:-1 tvg-id="KanalD.tr" tvg-logo="https://i.imgur.com/9o1atM6.png" group-title="TR · Dizi / Film / Yarisma",Kanal D (1080p)
+https://demiroren.daioncdn.net/kanald/kanald.m3u8?app=kanald_web&ce=3
+#EXTINF:-1 tvg-id="StarTV.tr" tvg-logo="https://i.imgur.com/9O3DHRB.png" group-title="TR · Dizi / Film / Yarisma",Star TV (720p)
+https://dogus.daioncdn.net/startv/startv_720p.m3u8?app=a20ac41e-bdc3-4aa1-934d-26b484480ac9&ce=3&sid=8l4w3lst4co5
+#EXTINF:-1 tvg-id="TV8.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/thumb/6/68/Tv8_Yeni_Logo.png/960px-Tv8_Yeni_Logo.png" group-title="TR · Dizi / Film / Yarisma",TV8 (1080p)
+https://tv8.daioncdn.net/tv8/tv8.m3u8?app=7ddc255a-ef47-4e81-ab14-c0e5f2949788&ce=3
+#EXTINF:-1 tvg-id="Kanal7.tr" tvg-logo="https://i.imgur.com/0gq9xOm.png" group-title="TR · Dizi / Film / Yarisma",Kanal 7 (1080p)
+https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8
+#EXTINF:-1 tvg-id="KanalDDrama.tr" tvg-logo="https://i.imgur.com/WIeZMKT.png" group-title="TR · Dizi / Film / Yarisma",Kanal D Drama (1080p)
+http://190.93.224.42/KANAL-D-DRAMA/index.m3u8
+#EXTINF:-1 tvg-id="EuroD.tr" tvg-logo="https://i.imgur.com/x9kHsXo.png" group-title="TR · Dizi / Film / Yarisma",Euro D (720p)
+https://live.duhnet.tv/S2/HLS_LIVE/eurodnp/playlist.m3u8
+#EXTINF:-1 tvg-id="Kanal7Avrupa.tr" tvg-logo="https://i.imgur.com/wlfyj5l.png" group-title="TR · Dizi / Film / Yarisma",Kanal 7 Avrupa (720p)
+https://livetv.radyotvonline.net/kanal7live/kanal7avr/playlist.m3u8
+#EXTINF:-1 tvg-id="GrandCinema.tr" tvg-logo="" group-title="TR · Dizi / Film / Yarisma",Grand Cinema
+https://gcinemahls.wns.live/hls/stream.m3u8
+#EXTINF:-1 tvg-id="TRT2.tr" tvg-logo="https://i.imgur.com/iOCQdyD.png" group-title="TR · Dizi / Film / Yarisma",TRT 2 (1440p)
+https://tv-trt2.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TGRTBelgesel.tr" tvg-logo="https://i.imgur.com/VwWTnf0.png" group-title="TR · Dizi / Film / Yarisma",TGRT Belgesel (576p)
+https://b01c02nl.mediatriple.net/videoonlylive/mtsxxkzwwuqtglive/broadcast_5fe462afc6a0e.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="CNBCe.tr" tvg-logo="https://s.cnbce.com/dist/images/logo-nav.png" group-title="TR · Dizi / Film / Yarisma",CNBC-e
+https://hnpsechtsc.turknet.ercdn.net/xpnvudnlsv/cnbc-e/cnbc-e.m3u8
 #EXTINF:-1 tvg-id="TBMMTV.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/TBMM_TV_logo.svg/960px-TBMM_TV_logo.svg.png" group-title="TR · TRT",TBMM TV (720p)
 https://meclistv-live.ercdn.net/meclistv/meclistv.m3u8
 #EXTINF:-1 tvg-id="TRT1.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/TRT_1_logo_%282021-%29.svg/960px-TRT_1_logo_%282021-%29.svg.png" group-title="TR · TRT",TRT 1 (1440p)
@@ -17,6 +43,8 @@ https://tv-trt3.live.trt.com.tr/master.m3u8
 https://tv-trtarabi.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="TRTAvaz.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TRT_Avaz_logo.svg/960px-TRT_Avaz_logo.svg.png" group-title="TR · TRT",TRT Avaz (720p)
 https://tv-trtavaz.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTBelgesel.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/TRT_Belgesel_logo_%282019-%29.svg/960px-TRT_Belgesel_logo_%282019-%29.svg.png" group-title="TR · TRT",TRT Belgesel (720p)
+https://tv-trtbelgesel.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="TRTCocuk.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/TRT_%C3%87ocuk_logo_%282021%29.svg/960px-TRT_%C3%87ocuk_logo_%282021%29.svg.png" group-title="TR · TRT",TRT Cocuk (1440p)
 https://tv-trtcocuk.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="TRTDiyanetCocuk.tr" tvg-logo="https://i.imgur.com/8PmXz9t.png" group-title="TR · TRT",TRT Diyanet Cocuk (720p)
@@ -100,8 +128,8 @@ https://api-tv3.yayin.com.tr/postatv/postatv/playlist.m3u8
 https://live.artidijitalmedya.com/artidijital_anadolunet/anadolunet/playlist.m3u8
 #EXTINF:-1 tvg-id="ArasTV.tr" tvg-logo="https://i.imgur.com/JsDCyWG.png" group-title="TR · Ulusal / Eglence",Aras TV (576p)
 http://1.rtmp.org/tv217/yayin.stream/playlist.m3u8
-#EXTINF:-1 tvg-id="ATV.tr" tvg-logo="https://i.imgur.com/HyVUwFC.png" group-title="TR · Ulusal / Eglence",ATV (360p)
-http://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv_360p.m3u8
+#EXTINF:-1 tvg-id="ATV.tr" tvg-logo="https://i.imgur.com/HyVUwFC.png" group-title="TR · Ulusal / Eglence",ATV (1080p)
+https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv_1080p.m3u8
 #EXTINF:-1 tvg-id="BenguturkTV.tr" tvg-logo="https://i.imgur.com/p3ON1oX.png" group-title="TR · Ulusal / Eglence",Benguturk TV (720p)
 https://tv.ensonhaber.com/benguturk/benguturk.m3u8
 #EXTINF:-1 tvg-id="BirTV.tr" tvg-logo="https://birtv.tv/assets/upload/637f83951df60.png" group-title="TR · Ulusal / Eglence",Bir TV (720p)
@@ -186,8 +214,6 @@ https://raw.githubusercontent.com/yaskar661-lgtm/stream/refs/heads/main/filbox/s
 https://dogus.daioncdn.net/startv/startv_720p.m3u8?app=a20ac41e-bdc3-4aa1-934d-26b484480ac9&ce=3&sid=8l4w3lst4co5
 #EXTINF:-1 tvg-id="SunRTV.tr" tvg-logo="https://i.imgur.com/64tph9N.png" group-title="TR · Ulusal / Eglence",Sun RTV (720p)
 https://live.artidijitalmedya.com/artidijital_sunrtv/sunrtv/playlist.m3u8
-#EXTINF:-1 tvg-id="Tele1.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/4/43/Tele1_logosu.png" group-title="TR · Ulusal / Eglence",Tele 1 (1080p)
-https://tele1-live.ercdn.net/tele1/tele1.m3u8
 #EXTINF:-1 tvg-id="TempoTV.tr" tvg-logo="https://i.imgur.com/tZpx32y.png" group-title="TR · Ulusal / Eglence",Tempo TV (720p)
 https://live.artidijitalmedya.com/artidijital_tempotv/tempotv/playlist.m3u8
 #EXTINF:-1 tvg-id="TGRTBelgesel.tr" tvg-logo="https://i.imgur.com/VwWTnf0.png" group-title="TR · Ulusal / Eglence",TGRT Belgesel (576p)
@@ -196,6 +222,8 @@ https://b01c02nl.mediatriple.net/videoonlylive/mtsxxkzwwuqtglive/broadcast_5fe46
 https://live.artidijitalmedya.com/artidijital_tivi6/tivi6/playlist.m3u8
 #EXTINF:-1 tvg-id="TonTV.tr" tvg-logo="https://i.imgur.com/f0Soeob.png" group-title="TR · Ulusal / Eglence",Ton TV (720p)
 https://live.artidijitalmedya.com/artidijital_tontv/tontv/playlist.m3u8
+#EXTINF:-1 tvg-id="TurksatTanitim.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/T%C3%BCrksat_logo.svg/960px-T%C3%BCrksat_logo.svg.png" group-title="TR · Ulusal / Eglence",Turksat Tanitim (1080p)
+http://176.65.153.26:6004/play/a02s/index.m3u8
 #EXTINF:-1 tvg-id="TV264.tr" tvg-logo="https://i.imgur.com/tudXdOZ.png" group-title="TR · Ulusal / Eglence",TV 264 (1080p)
 https://b01c02nl.mediatriple.net/videoonlylive/mtdxkkitgbrckilive/broadcast_5ee244263fd6d.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="TV4.tr" tvg-logo="https://i.imgur.com/UpsQsbd.png" group-title="TR · Ulusal / Eglence",TV 4 (720p)
@@ -218,9 +246,6 @@ https://playlist.fasttvcdn.com/pl/rfrk9821hdy9dayo8wfyha/kltr-sanat-tv/playlist.
 https://zindikurmanci.zaroktv.com.tr/hls/stream.m3u8
 #EXTINF:-1 tvg-id="ASpor.tr" tvg-logo="https://i.imgur.com/ZhkZzLf.png" group-title="TR · Spor",A Spor (1080p)
 https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/aspor/aspor.m3u8
-#EXTINF:-1 tvg-id="beINSports1Turk.tr" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/2/27/BeinSports1.svg/revision/latest?cb=20230910184457" group-title="TR · Spor",beIN Sports 1 Turk
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
-http://57.129.0.61:1990/stream/117/index.m3u8
 #EXTINF:-1 tvg-id="FBTV.tr" tvg-logo="https://i.imgur.com/qBVqtYd.png" group-title="TR · Spor",FB TV (720p)
 http://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="HTSporTV.tr" tvg-logo="https://www.htspor.com/images/manifest/social-share-logo.png" group-title="TR · Spor",HTSpor TV (1080p)
@@ -327,14 +352,10 @@ https://rt-ger.rttv.com/dvr/rtdeutsch/playlist.m3u8
 https://dash4.antik.sk/live/test_welt_tizen/playlist.m3u8
 #EXTINF:-1 tvg-id="Avatar.de" tvg-logo="https://i.imgur.com/2ijwlnR.png" group-title="DE · Kinder",Avatar
 https://jmp2.uk/plu-656df599c0fc8800089c75ab.m3u8
-#EXTINF:-1 tvg-id="DisneyChannel.de" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/3/3d/2022_Disney_Channel_logo.svg" group-title="DE · Kinder",Disney Channel (576p)
-https://s6.hopslan.com/disneyX/index.m3u8
 #EXTINF:-1 tvg-id="DrakeJosh.de" tvg-logo="https://images.pluto.tv/channels/65a67c494a10d800085cab06/colorLogoPNG.png" group-title="DE · Kinder",Drake & Josh
 https://jmp2.uk/plu-65a67c494a10d800085cab06.m3u8
 #EXTINF:-1 tvg-id="KiKA.de" tvg-logo="https://i.imgur.com/vZdNp5S.png" group-title="DE · Kinder",KiKA (1080p)
 https://kikahls.akamaized.net/hls/live/2022690/livetvkika_ww/master.m3u8
-#EXTINF:-1 tvg-id="NickJrClub.de" tvg-logo="https://images.pluto.tv/channels/67f3eb1c443f0671bc03ece8/colorLogoPNG_1748329104247.png" group-title="DE · Kinder",Nick Jr. Club (720p)
-https://jmp2.uk/plu-67f3eb1c443f0671bc03ece8.m3u8
 #EXTINF:-1 tvg-id="Nickelodeon.de" tvg-logo="https://i.imgur.com/E84jnP8.png" group-title="DE · Kinder",Nickelodeon
 https://ma.anixa.tv/clips/stream/nickelodeon/playlist.php
 #EXTINF:-1 tvg-id="NickelodeonClassics.de" tvg-logo="https://images.pluto.tv/channels/67f3eb800a1beb98767ca748/colorLogoPNG_1749200817646.png" group-title="DE · Kinder",Nickelodeon Classics (720p)
@@ -379,6 +400,12 @@ https://jmp2.uk/plu-622f6e1e2792150007e0b2ff.m3u8
 https://stream01.welocal.stream/stream/fhd-allgaeutv_25679/ngrp:stream_all/playlist.m3u8
 #EXTINF:-1 tvg-id="AltenburgTV.de" tvg-logo="https://i.imgur.com/3JriZGR.png" group-title="DE · Sonstige",Altenburg TV (1080p)
 https://sdn-global-live-streaming-packager-cache.3qsdn.com/132661/132661_264_live.m3u8
+#EXTINF:-1 tvg-id="AnixePlus.de" tvg-logo="https://i.imgur.com/hvGJ2oa.png" group-title="DE · Sonstige",Anixe + (360p)
+https://ma.anixa.tv/clips/stream/anixesd/index.m3u8
+#EXTINF:-1 tvg-id="AnixeHDSerie.de" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Anixe_HD.svg/960px-Anixe_HD.svg.png" group-title="DE · Sonstige",Anixe HD Serie (360p)
+https://ma.anixa.tv/clips/stream/anixehd/index.m3u8
+#EXTINF:-1 tvg-id="AristoTV.de" tvg-logo="https://i.imgur.com/DLVjeno.png" group-title="DE · Sonstige",Aristo TV (360p)
+https://ma.anixa.tv/clips/stream/aristo/index.m3u8
 #EXTINF:-1 tvg-id="AuctionHunters.de" tvg-logo="https://i.imgur.com/4SPOVN7.png" group-title="DE · Sonstige",Auction Hunters
 https://jmp2.uk/plu-5ede45d077746000072be0fe.m3u8
 #EXTINF:-1 tvg-id="AugsburgTV.de" tvg-logo="https://i.imgur.com/27AKMUL.png" group-title="DE · Sonstige",Augsburg TV (1080p)
@@ -453,6 +480,8 @@ https://dash4.antik.sk/live/test_kabel_eins_tizen/playlist.m3u8
 https://s6.hopslan.com/dokuX/index.m3u8
 #EXTINF:-1 tvg-id="KulturMD.de" tvg-logo="https://i.imgur.com/io7cJ1Z.png" group-title="DE · Sonstige",KulturMD (1080p)
 http://58bd5b7a98e04.streamlock.net/medienasa-live/kulturmd_high/playlist.m3u8
+#EXTINF:-1 tvg-id="labor14.de" tvg-logo="https://www.tlm.de/assets/uploads/general/Sonstiges/LogoExt/_500xAUTO_crop_center-center_none/21labor14.jpg" group-title="DE · Sonstige",labor14 (720p)
+https://5acade5fc0c29.streamlock.net/OKGera/tmbz_live_high.stream/playlist.m3u8
 #EXTINF:-1 tvg-id="Lausitzwelle.de" tvg-logo="https://i.imgur.com/4kYF4bK.png" group-title="DE · Sonstige",Lausitzwelle (1080p)
 https://h056.video-stream-hosting.de/easycast11-live/_definst_/mp4:livestreamhd2/playlist.m3u8?ref=
 #EXTINF:-1 tvg-id="LightChannel.de" tvg-logo="https://i.imgur.com/0OmBlfE.png" group-title="DE · Sonstige",Light Channel (576p)
