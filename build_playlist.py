@@ -41,14 +41,10 @@ TIMEOUT = 10
 # GitHub sunuculari ABD'de: orada 403 (bolge kisitlamasi) veren link evde calisabilir.
 # GEO_TOLERANT=1 iken, baska calisan linki olmayan kanallarda 403 veren link de tutulur.
 GEO_TOLERANT = os.environ.get("GEO_TOLERANT") == "1"
-# Evden (Turkiye disi) denendi, acilmiyor: TRT bu yayinlari yurt disina kapatiyor.
-# Ana liste acilsa bile video parcalari 403 veriyor. Bu linkler listeye hic alinmaz.
-BLOCKED_URL_PATTERNS = [
-    "tv-trtbelgesel.medya.trt.com.tr",
-    "tv-trtcocuk.medya.trt.com.tr",
-    "trt.daioncdn.net/trtspor",  # TRT Spor ve TRT Spor Yildiz
-    "live.duhnet.tv/S2/HLS_LIVE/cnnturknp",  # CNN Turk 720p
-]
+# Listeye hic alinmayacak link parcalari (su an bos).
+# TRT Belgesel/Cocuk/Spor ve CNN Turk 720p yurt disinda 403 verir; evde NordVPN (Turkiye) ile acilir,
+# bu yuzden asagida EXTRA_STREAMS'e "extra" olarak eklendi.
+BLOCKED_URL_PATTERNS = []
 
 
 def is_blocked(url):
@@ -61,6 +57,12 @@ EXTRA_STREAMS = [
     {"channel": "EuronewsEnglish.fr", "url": "https://cdn-euronews.akamaized.net/live/eds/euronews-en/25002/index.m3u8", "quality": "720p"},
     # "extra": her zaman ek secenek olarak eklenir (ABD'den 403 verse de Turkiye/Almanya'dan calisabilir)
     {"channel": "NTV.tr", "url": "https://dogus.daioncdn.net/ntv/ntv.m3u8?app=ntv_web", "quality": "", "extra": True},
+    # Resmi TRT / CNN Turk yayinlari: sadece Turkiye IP'si ile acilir (NordVPN -> Turkiye)
+    {"channel": "TRTBelgesel.tr", "url": "https://tv-trtbelgesel.medya.trt.com.tr/master.m3u8", "quality": "720p", "extra": True},
+    {"channel": "TRTCocuk.tr", "url": "https://tv-trtcocuk.medya.trt.com.tr/master.m3u8", "quality": "1080p", "extra": True},
+    {"channel": "TRTSpor.tr", "url": "https://trt.daioncdn.net/trtspor/master.m3u8?app=web&platform=trtspor", "quality": "720p", "extra": True},
+    {"channel": "TRTSporYildiz.tr", "url": "https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor", "quality": "1080p", "extra": True},
+    {"channel": "CNNTurk.tr", "url": "https://live.duhnet.tv/S2/HLS_LIVE/cnnturknp/track_4_1000/playlist.m3u8", "quality": "720p", "extra": True},
 ]
 
 # iptv-org'da ulke disi (FR) olan veya hic olmayan kanallar: grup elle verilir
@@ -198,14 +200,13 @@ def group_for(ch):
     return "DE · Sonstige"
 
 
-GROUP_ORDER = [
-    "★ Favoriler",
-    "TR · TRT", "TR · Haber", "TR · Cocuk", DIZI_GROUP, "TR · Ulusal / Eglence", TR_SPOR, TR_BELGESEL,
-    "TR · Muzik", "TR · Dini", "TR · Kultur / Yasam",
-    "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Filme / Serien", "DE · Unterhaltung",
-    DE_DOKU, DE_SPORT, "DE · Musik", "DE · Religion", "DE · Regional", "DE · Sonstige",
-    EN_GROUP, RADYO_GROUP,
-]
+_TR_GROUPS = ["TR · TRT", "TR · Haber", "TR · Cocuk", DIZI_GROUP, "TR · Ulusal / Eglence", TR_SPOR, TR_BELGESEL,
+              "TR · Muzik", "TR · Dini", "TR · Kultur / Yasam"]
+_DE_GROUPS = ["DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Filme / Serien",
+              "DE · Unterhaltung", DE_DOKU, DE_SPORT, "DE · Musik", "DE · Religion", "DE · Regional", "DE · Sonstige"]
+# Favoriler en ustte; sonra Turkce gruplar kendi icinde, Almanca gruplar kendi icinde alfabetik
+GROUP_ORDER = (["★ Favoriler"] + sorted(_TR_GROUPS, key=str.casefold) + sorted(_DE_GROUPS, key=str.casefold)
+               + [EN_GROUP, RADYO_GROUP])
 
 
 def check(stream):
@@ -337,8 +338,8 @@ def main(out_path="playlist.m3u"):
     best, score, working, forced = {}, {}, {}, {}
     for s, ok in zip(candidates, results):
         if s.get("extra"):
-            if ok:
-                forced.setdefault(s["channel"], []).append(s)
+            # ABD sunucusundan acilmasa bile her zaman tutulur (evde VPN/Turkiye IP ile acilir)
+            forced.setdefault(s["channel"], []).append(s)
             continue
         if not ok:
             continue
@@ -375,6 +376,10 @@ def main(out_path="playlist.m3u"):
         if group_for(ch) == "TR · TRT" and set(ch.get("categories") or []) & {"kids", "animation"}:
             groups.append("TR · Cocuk")
         return [(g, ch, s) for g in groups]
+
+    # Sadece "extra" linki olan kanallar (orn. TRT Belgesel ABD'den hic acilmazsa) yine de listeye girer
+    for cid, xs in forced.items():
+        best.setdefault(cid, xs[0])
 
     entries = []
     for cid, main_s in best.items():
