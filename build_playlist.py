@@ -28,10 +28,12 @@ DIZI_FILM = [
     "360.tr", "Tivi6.tr", "TV41.tr", "Kanal15.tr", "ASTV.tr", "Kanal26.tr", "ESTV.tr", "LiderHaber.tr",
 ]
 DIZI_GROUP = "TR · Dizi / Film / Yarisma"
-# Belgesel / Doku: documentary kategorisindeki tum kanallar + bunlar (TR once, sonra DE)
-BELGESEL_GROUP = "Belgesel / Doku"
-# Spor / Sport: TR + DE tum ucretsiz spor kanallari tek grupta (TR once, sonra DE)
-SPOR_GROUP = "Spor / Sport"
+# Her grup tek dilli: Turkce kanallar "TR ·", Almanca kanallar "DE ·" gruplarinda.
+# Belgesel ve spor kanallari ayrica kendi dilinin belgesel / spor grubunda da gosterilir.
+TR_BELGESEL, DE_DOKU = "TR · Belgesel", "DE · Doku"
+TR_SPOR, DE_SPORT = "TR · Spor", "DE · Sport"
+EN_GROUP = "EN · News"
+EN_ALSO = {"TRTWorld.tr"}  # TRT'de de durur, ayrica Ingilizce haber grubunda
 SPOR_NAME = re.compile(r"Spor|Sport|TJK|Motor", re.I)
 BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "CuriosityChannel.de"]
 DEFAULT_UA = "Mozilla/5.0 (Linux; Android 12; Google TV) AppleWebKit/537.36 Chrome/120 Safari/537.36"
@@ -61,7 +63,7 @@ _TRT_RADIO = [
 ]
 EXTRA_CHANNELS = {
     "EuronewsGerman.fr": {"group": "DE · Nachrichten"},
-    "EuronewsEnglish.fr": {"group": "DE · Nachrichten"},
+    "EuronewsEnglish.fr": {"group": EN_GROUP},
 }
 # iptv-org'da haber kategorisi eksik olan haber kanallari
 NEWS_OVERRIDE = {
@@ -100,6 +102,14 @@ FOREIGN_NAMES = re.compile(
     re.I,
 )
 
+# Turkce/Almanca olmayan diller: bu dillerde yayin yapan kanallar listeye girmez
+FOREIGN_LANGS = {"rus", "kur", "ara", "fas", "zza", "kmr", "ckb"}
+DE_RELIGION = re.compile(r"Bibel|EWTN|Sophia|Light Channel|Neu Jerusalem|EchtJetzt|K-TV|Hope Channel", re.I)
+DE_REGIONAL = re.compile(
+    r"^(OK |OK-|Offener Kanal|Regio|Sachsen|Niederbayern|Oberpfalz|Allg|Altenburg|Augsburg|Erz|Filstal|Franken|MDF|"
+    r"M[uü]nchen|RFH|Saarland|TV ?38|TVA|TV Ingolstadt|TV Mainfranken|TV Oberfranken|noa4|telt|Alex|PUNKTum|RBW|"
+    r"Seenluft|labor14|NRWision|iSTUFF|KulturMD|RiC|Unserding|RAN1|L-TV|Hamburg|Rhein|Berlin)", re.I)
+
 DE_PUBLIC = re.compile(
     r"^(Das Erste|ARD|ZDF|3sat|arte|ARTE|phoenix|KiKA|ONE|tagesschau|BR |BR$|WDR|NDR|SWR|MDR|hr|HR|rbb|RBB|SR |ARD-alpha|Radio Bremen|Deutsche Welle|DW)"
 )
@@ -122,40 +132,69 @@ def is_sport(ch):
     return bool(set(ch.get("categories") or []) & {"sports", "auto"}) or bool(SPOR_NAME.search(ch["name"]))
 
 
+def is_trt(ch):
+    return ch["name"].upper().startswith("TRT") or "TRT" in (ch.get("owners") or []) or ch.get("network") == "TRT"
+
+
+def side_of(ch):
+    """Kanalin dil tarafi: 'TR' (Turkce) veya 'DE' (Almanca)."""
+    return ch.get("side") or ch.get("country")
+
+
 def group_for(ch):
     if ch.get("group"):
         return ch["group"]
     cats = set(ch.get("categories") or [])
     name = ch["name"]
-    if ch["country"] == "TR":
-        if name.upper().startswith("TRT") or "TRT" in (ch.get("owners") or []) or ch.get("network") == "TRT":
+    if side_of(ch) == "TR":
+        if is_trt(ch):
             return "TR · TRT"
         if is_sport(ch):
-            return SPOR_GROUP
+            return TR_SPOR
         if cats & {"kids", "animation"}:
             return "TR · Cocuk"
         if "religious" in cats or TR_DINI.search(name):
             return "TR · Dini"
-        if "news" in cats or "business" in cats:
+        if cats & {"news", "business", "legislative", "weather"}:
             return "TR · Haber"
-        if cats & {"general", "entertainment", "series", "movies", "comedy"} or not cats:
+        if "documentary" in cats or ch["id"] in BELGESEL:
+            return TR_BELGESEL
+        if "music" in cats:
+            return "TR · Muzik"
+        if cats & {"general", "entertainment", "series", "movies", "comedy", "classic"} or not cats:
             return "TR · Ulusal / Eglence"
-        return "TR · Diger"
-    # Almanya
+        return "TR · Kultur / Yasam"
+    # Almanca
     if cats & {"kids", "animation"}:
         return "DE · Kinder"
     if DE_PUBLIC.match(name):
         return "DE · ARD / ZDF / Offentlich"
-    if "news" in cats or "business" in cats:
+    if cats & {"news", "business", "legislative", "weather"}:
         return "DE · Nachrichten"
     if is_sport(ch):
-        return SPOR_GROUP
+        return DE_SPORT
+    if "documentary" in cats or ch["id"] in BELGESEL:
+        return DE_DOKU
+    if "music" in cats:
+        return "DE · Musik"
+    if "religious" in cats or DE_RELIGION.search(name):
+        return "DE · Religion"
+    if DE_REGIONAL.search(name) or "general" in cats:
+        return "DE · Regional"
+    if cats & {"movies", "series", "comedy", "classic"}:
+        return "DE · Filme / Serien"
+    if cats & {"entertainment", "lifestyle", "culture", "education", "family", "travel", "cooking", "outdoor"} or not cats:
+        return "DE · Unterhaltung"
     return "DE · Sonstige"
 
 
 GROUP_ORDER = [
-    "★ Favoriler", DIZI_GROUP, BELGESEL_GROUP, SPOR_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Dini", "TR · Diger",
-    "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Sonstige", RADYO_GROUP,
+    "★ Favoriler",
+    "TR · TRT", "TR · Haber", "TR · Cocuk", DIZI_GROUP, "TR · Ulusal / Eglence", TR_SPOR, TR_BELGESEL,
+    "TR · Muzik", "TR · Dini", "TR · Kultur / Yasam",
+    "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Filme / Serien", "DE · Unterhaltung",
+    DE_DOKU, DE_SPORT, "DE · Musik", "DE · Religion", "DE · Regional", "DE · Sonstige",
+    EN_GROUP, RADYO_GROUP,
 ]
 
 
@@ -242,6 +281,24 @@ def main(out_path="playlist.m3u"):
             channels[cid] = dict(channels[cid], group=grp)
     for cid in EXCLUDE_IDS:
         channels.pop(cid, None)
+    # Dil bilgisi (feeds.json): Almanya'dan Turkce yayin yapanlar TR tarafina,
+    # Turkce/Almanca olmayan dillerde yayin yapanlar listeden cikar.
+    langs = {}
+    try:
+        for f in fetch_json("feeds.json"):
+            langs.setdefault(f.get("channel"), set()).update(f.get("languages") or [])
+    except Exception:
+        pass
+    for cid in list(channels):
+        c = channels[cid]
+        if c.get("country") not in COUNTRIES or cid in EXTRA_CHANNELS or c["name"].startswith("Pluto"):
+            continue
+        L = langs.get(cid, set())
+        if L and not L & {"tur", "deu"} and L & FOREIGN_LANGS and not is_trt(c):
+            channels.pop(cid)
+            continue
+        side = "TR" if "tur" in L else ("DE" if "deu" in L else c["country"])
+        channels[cid] = dict(c, side=side)
     streams = fetch_json("streams.json")
     logos = {}
     try:
@@ -291,12 +348,19 @@ def main(out_path="playlist.m3u"):
         groups = [group_for(ch)]
         if cid in FAVORITES:
             groups.insert(0, "★ Favoriler")
-        if cid in DIZI_FILM or (ch["country"] == "TR" and set(ch.get("categories") or []) & {"series", "movies"}):
+        tr = side_of(ch) == "TR"
+        if tr and (cid in DIZI_FILM or set(ch.get("categories") or []) & {"series", "movies"}):
             groups.append(DIZI_GROUP)
-        if cid in BELGESEL or "documentary" in (ch.get("categories") or []):
-            groups.append(BELGESEL_GROUP)
-        if is_sport(ch) and SPOR_GROUP not in groups:
-            groups.append(SPOR_GROUP)
+        if side_of(ch) in COUNTRIES and (cid in BELGESEL or "documentary" in (ch.get("categories") or [])):
+            g = TR_BELGESEL if tr else DE_DOKU
+            if g not in groups:
+                groups.append(g)
+        if side_of(ch) in COUNTRIES and is_sport(ch):
+            g = TR_SPOR if tr else DE_SPORT
+            if g not in groups:
+                groups.append(g)
+        if cid in EN_ALSO:
+            groups.append(EN_GROUP)
         if group_for(ch) == "TR · TRT" and set(ch.get("categories") or []) & {"kids", "animation"}:
             groups.append("TR · Cocuk")
         return [(g, ch, s) for g in groups]
@@ -314,8 +378,6 @@ def main(out_path="playlist.m3u"):
         fav = FAVORITES.index(ch["id"]) if g == "★ Favoriler" and ch["id"] in FAVORITES else 0
         if g == DIZI_GROUP:
             fav = DIZI_FILM.index(ch["id"]) if ch["id"] in DIZI_FILM else len(DIZI_FILM)
-        if g in (BELGESEL_GROUP, SPOR_GROUP):
-            fav = 0 if ch["country"] == "TR" else 1
         return (GROUP_ORDER.index(g), fav, ch["name"].lower())
 
     entries.sort(key=sort_key)
