@@ -62,7 +62,6 @@ EXTRA_STREAMS = [
     {"channel": "TRTCocuk.tr", "url": "https://tv-trtcocuk.medya.trt.com.tr/master.m3u8", "quality": "1080p", "extra": True},
     {"channel": "TRTSpor.tr", "url": "https://trt.daioncdn.net/trtspor/master.m3u8?app=web&platform=trtspor", "quality": "720p", "extra": True},
     {"channel": "TRTSporYildiz.tr", "url": "https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor", "quality": "1080p", "extra": True},
-    {"channel": "CNNTurk.tr", "url": "https://live.duhnet.tv/S2/HLS_LIVE/cnnturknp/track_4_1000/playlist.m3u8", "quality": "720p", "extra": True},
 ]
 
 # iptv-org'da ulke disi (FR) olan veya hic olmayan kanallar: grup elle verilir
