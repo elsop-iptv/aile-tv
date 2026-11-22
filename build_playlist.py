@@ -11,6 +11,7 @@ import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
@@ -23,7 +24,7 @@ FAVORITES = ["TRT1.tr", "CNNTurk.tr", "TVNET.tr"]  # en cok izlenenler, en ustte
 DIZI_FILM = [
     "TRT1.tr", "ATV.tr", "KanalD.tr", "StarTV.tr", "TV8.tr", "Kanal7.tr", "ShowTV.tr", "NOWTV.tr", "FOXTV.tr",
     "BeyazTV.tr", "Teve2.tr", "TV360.tr", "KanalDDrama.tr", "EuroD.tr", "EuroStar.tr", "Kanal7Avrupa.tr",
-    "ATVAvrupa.tr", "ShowTurk.tr", "ShowMax.tr", "GrandCinema.tr", "TRT2.tr", "TGRTBelgesel.tr",
+    "ATVAvrupa.tr", "ShowTurk.tr", "ShowMax.tr", "GrandCinema.tr", "TRT2.tr", "TGRTBelgesel.tr", "TV4.tr",
 ]
 DIZI_GROUP = "TR · Dizi / Film / Yarisma"
 DEFAULT_UA = "Mozilla/5.0 (Linux; Android 12; Google TV) AppleWebKit/537.36 Chrome/120 Safari/537.36"
@@ -51,7 +52,7 @@ BLOCKED_NAMES = re.compile(
 # Ucretli (abonelikli) kanallar ve Turkce/Almanca olmayan yayinlar: hic eklenmez.
 PAID_OR_FOREIGN = re.compile(
     r"^(Sky |Sky$|Nicktoons|Nick Jr|GEM |GEM$|Curiosity NOW|Ost West|Disney|beIN|S Sport|Tivibu|Digiturk|"
-    r"Exxen|BluTV|DAZN|MagentaMusik)", re.I)
+    r"Exxen|BluTV|DAZN|MagentaMusik|Al-Zahra|Al Zahra|Thaqalayn)", re.I)
 
 FOREIGN_NAMES = re.compile(
     r"de Pluto|by Pluto|x Pluto|Pluto TV (Alberto|Animales|Animaux|Aventure|Catastrofes|Christmas tutto|Cine |"
@@ -135,6 +136,59 @@ def check(stream):
         return 0
 
 
+def fetch_text(stream):
+    headers = {"User-Agent": stream.get("user_agent") or DEFAULT_UA}
+    if stream.get("referrer"):
+        headers["Referer"] = stream["referrer"]
+    req = urllib.request.Request(stream["url"], headers=headers)
+    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+        return r.geturl(), r.read(65536).decode("utf-8", "replace")
+
+
+def variants(stream):
+    """Ana (master) listedeki kalite secenekleri: [(yukseklik, url)]. Ses ayri ise bos doner."""
+    try:
+        base, text = fetch_text(stream)
+    except Exception:
+        return []
+    if "#EXT-X-STREAM-INF" not in text or "TYPE=AUDIO" in text:
+        return []
+    out, lines = [], text.splitlines()
+    for i, line in enumerate(lines):
+        if not line.startswith("#EXT-X-STREAM-INF"):
+            continue
+        uri = next((l.strip() for l in lines[i + 1:] if l.strip() and not l.startswith("#")), None)
+        if not uri:
+            continue
+        m = re.search(r"RESOLUTION=\d+x(\d+)", line)
+        h = int(m.group(1)) if m else 0
+        if not h:
+            m = re.search(r"(\d{3,4})p", uri)
+            h = int(m.group(1)) if m else 0
+        if h:
+            out.append((h, urllib.parse.urljoin(base, uri)))
+    return out
+
+
+def fallback_for(best_s, alts):
+    """Iyi kalite secilen kanal icin 720p (veya daha dusuk) yedek yayin bulur."""
+    v = variants(best_s)
+    if v and max(h for h, _ in v) > 720:
+        low = [x for x in v if x[0] <= 720]
+        if low:
+            h, url = max(low)
+            fb = dict(best_s, url=url, quality=f"{h}p")
+            if check(fb) == 2:
+                # ana link uyarlamali (master): en yuksek kalitesiyle etiketle
+                best_s["quality"] = f"{max(h for h, _ in v)}p"
+                return fb
+    # iptv-org'daki baska bir 720p ve alti link
+    low = [s for s in alts if s["url"] != best_s["url"] and 0 < quality_rank(s.get("quality")) <= 720]
+    if low and quality_rank(best_s.get("quality")) > 720:
+        return max(low, key=lambda s: quality_rank(s.get("quality")))
+    return None
+
+
 def main(out_path="playlist.m3u"):
     print("Veri indiriliyor...")
     channels = {c["id"]: c for c in fetch_json("channels.json")}
@@ -162,17 +216,23 @@ def main(out_path="playlist.m3u"):
     with ThreadPoolExecutor(max_workers=40) as ex:
         results = list(ex.map(check, candidates))
 
-    best, score = {}, {}
+    best, score, working = {}, {}, {}
     for s, ok in zip(candidates, results):
         if not ok:
             continue
         cid = s["channel"]
+        if ok == 2:
+            working.setdefault(cid, []).append(s)
         key = (ok, quality_rank(s.get("quality")))
         if cid not in best or key > score[cid]:
             best[cid], score[cid] = s, key
 
-    entries = []
-    for cid, s in best.items():
+    print("Yedek (720p) secenekler araniyor...")
+    cids = list(best)
+    with ThreadPoolExecutor(max_workers=40) as ex:
+        fbs = dict(zip(cids, ex.map(lambda c: fallback_for(best[c], working.get(c, [])), cids)))
+
+    def _entries_for(cid, s):
         ch = wanted[cid]
         groups = [group_for(ch)]
         if cid in FAVORITES:
@@ -181,8 +241,13 @@ def main(out_path="playlist.m3u"):
             groups.append(DIZI_GROUP)
         if group_for(ch) == "TR · TRT" and set(ch.get("categories") or []) & {"kids", "animation"}:
             groups.append("TR · Cocuk")
-        for g in groups:
-            entries.append((g, ch, s))
+        return [(g, ch, s) for g in groups]
+
+    entries = []
+    for cid, main_s in best.items():
+        streams_for = [main_s] + ([fbs[cid]] if fbs.get(cid) else [])
+        for s in streams_for:
+            entries.extend(_entries_for(cid, s))
 
     def sort_key(e):
         g, ch, _ = e
