@@ -41,15 +41,25 @@ TIMEOUT = 10
 # GitHub sunuculari ABD'de: orada 403 (bolge kisitlamasi) veren link evde calisabilir.
 # GEO_TOLERANT=1 iken, baska calisan linki olmayan kanallarda 403 veren link de tutulur.
 GEO_TOLERANT = os.environ.get("GEO_TOLERANT") == "1"
+# Evden (Turkiye disi) denendi, acilmiyor: TRT bu yayinlari yurt disina kapatiyor.
+# Ana liste acilsa bile video parcalari 403 veriyor. Bu linkler listeye hic alinmaz.
+BLOCKED_URL_PATTERNS = [
+    "tv-trtbelgesel.medya.trt.com.tr",
+    "tv-trtcocuk.medya.trt.com.tr",
+    "trt.daioncdn.net/trtspor",  # TRT Spor ve TRT Spor Yildiz
+    "live.duhnet.tv/S2/HLS_LIVE/cnnturknp",  # CNN Turk 720p
+]
+
+
+def is_blocked(url):
+    return any(p in url for p in BLOCKED_URL_PATTERNS)
 
 # iptv-org'da olmayan / ek resmi yayinlar
 EXTRA_STREAMS = [
     {"channel": "TVNET.tr", "url": "https://tvnet-live.lg.mncdn.com/tvnet-live/tvnet/playlist.m3u8", "quality": "1080p"},
-    {"channel": "TRTSpor.tr", "url": "https://trt.daioncdn.net/trtspor/master.m3u8?app=web&platform=trtspor", "quality": "720p"},
     {"channel": "EuronewsGerman.fr", "url": "https://cdn-euronews.akamaized.net/live/eds/euronews-de/25027/index.m3u8", "quality": "720p"},
     {"channel": "EuronewsEnglish.fr", "url": "https://cdn-euronews.akamaized.net/live/eds/euronews-en/25002/index.m3u8", "quality": "720p"},
     # "extra": her zaman ek secenek olarak eklenir (ABD'den 403 verse de Turkiye/Almanya'dan calisabilir)
-    {"channel": "CNNTurk.tr", "url": "https://live.duhnet.tv/S2/HLS_LIVE/cnnturknp/track_4_1000/playlist.m3u8", "quality": "720p", "extra": True},
     {"channel": "NTV.tr", "url": "https://dogus.daioncdn.net/ntv/ntv.m3u8?app=ntv_web", "quality": "", "extra": True},
 ]
 
@@ -256,7 +266,8 @@ def fallback_for(best_s, alts):
     """Iyi kalite secilen kanal icin 720p (veya daha dusuk) yedek yayin bulur."""
     v = variants(best_s)
     if v and max(h for h, _ in v) > 720:
-        low = [x for x in v if x[0] <= 720]
+        # sid= iceren linkler oturuma bagli, kisa surede gecersiz olur
+        low = [x for x in v if x[0] <= 720 and "sid=" not in x[1]]
         if low:
             h, url = max(low)
             fb = dict(best_s, url=url, quality=f"{h}p")
@@ -317,7 +328,7 @@ def main(out_path="playlist.m3u"):
         and not FOREIGN_NAMES.search(c["name"])
         and not PAID_OR_FOREIGN.search(c["name"])
     }
-    candidates = [s for s in streams + EXTRA_STREAMS if s.get("channel") in wanted]
+    candidates = [s for s in streams + EXTRA_STREAMS if s.get("channel") in wanted and not is_blocked(s["url"])]
     print(f"{len(wanted)} kanal, {len(candidates)} link test ediliyor...")
 
     with ThreadPoolExecutor(max_workers=40) as ex:
