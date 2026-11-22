@@ -384,12 +384,21 @@ def main(out_path="playlist.m3u"):
         for s in streams_for:
             entries.extend(_entries_for(cid, s))
 
+    # Ayni grupta birebir ayni olanlari sil: ayni kanal + ayni kalite ya da ayni URL
+    uniq, seen_q, seen_u = [], set(), set()
+    for g, ch, s in entries:
+        kq, ku = (g, ch["id"], s.get("quality") or ""), (g, s["url"])
+        if kq in seen_q or ku in seen_u:
+            continue
+        seen_q.add(kq)
+        seen_u.add(ku)
+        uniq.append((g, ch, s))
+    entries = uniq
+
     def sort_key(e):
-        g, ch, _ = e
-        fav = FAVORITES.index(ch["id"]) if g == "★ Favoriler" and ch["id"] in FAVORITES else 0
-        if g == DIZI_GROUP:
-            fav = DIZI_FILM.index(ch["id"]) if ch["id"] in DIZI_FILM else len(DIZI_FILM)
-        return (GROUP_ORDER.index(g), fav, ch["name"].lower())
+        # Grup sirasi, sonra kanal adina gore alfabetik, ayni kanalda yuksek kalite once
+        g, ch, s = e
+        return (GROUP_ORDER.index(g), ch["name"].casefold(), ch["id"], -quality_rank(s.get("quality")))
 
     entries.sort(key=sort_key)
 
