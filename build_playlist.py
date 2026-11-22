@@ -44,7 +44,36 @@ GEO_TOLERANT = os.environ.get("GEO_TOLERANT") == "1"
 EXTRA_STREAMS = [
     {"channel": "TVNET.tr", "url": "https://tvnet-live.lg.mncdn.com/tvnet-live/tvnet/playlist.m3u8", "quality": "1080p"},
     {"channel": "TRTSpor.tr", "url": "https://trt.daioncdn.net/trtspor/master.m3u8?app=web&platform=trtspor", "quality": "720p"},
+    {"channel": "EuronewsGerman.fr", "url": "https://cdn-euronews.akamaized.net/live/eds/euronews-de/25027/index.m3u8", "quality": "720p"},
+    {"channel": "EuronewsEnglish.fr", "url": "https://cdn-euronews.akamaized.net/live/eds/euronews-en/25002/index.m3u8", "quality": "720p"},
+    # "extra": her zaman ek secenek olarak eklenir (ABD'den 403 verse de Turkiye/Almanya'dan calisabilir)
+    {"channel": "CNNTurk.tr", "url": "https://live.duhnet.tv/S2/HLS_LIVE/cnnturknp/track_4_1000/playlist.m3u8", "quality": "720p", "extra": True},
+    {"channel": "NTV.tr", "url": "https://dogus.daioncdn.net/ntv/ntv.m3u8?app=ntv_web", "quality": "", "extra": True},
 ]
+
+# iptv-org'da ulke disi (FR) olan veya hic olmayan kanallar: grup elle verilir
+RADYO_GROUP = "Radyo · TRT"
+_TRT_RADIO = [
+    ("trtfm", "TRT FM"), ("trtradyo1", "TRT Radyo 1"), ("trtradyo3", "TRT Radyo 3"), ("trtturku", "TRT Türkü"),
+    ("trtnagme", "TRT Nağme"), ("trtradyohaber", "TRT Radyo Haber"), ("trtradyo6", "TRT Radyo 6"),
+    ("trtantalya", "TRT Antalya"), ("trtcukurova", "TRT Çukurova"), ("trterzurum", "TRT Erzurum"),
+    ("trtgap", "TRT GAP"), ("trttrabzon", "TRT Trabzon"), ("trtmemleketimfm", "TRT Memleketim FM"),
+]
+EXTRA_CHANNELS = {
+    "EuronewsGerman.fr": {"group": "DE · Nachrichten"},
+    "EuronewsEnglish.fr": {"group": "DE · Nachrichten"},
+}
+# iptv-org'da haber kategorisi eksik olan haber kanallari
+NEWS_OVERRIDE = {
+    "NTV.tr": "TR · Haber", "SozcuTV.tr": "TR · Haber", "Tele1.tr": "TR · Haber", "TVNET.tr": "TR · Haber",
+    "ntv.de": "DE · Nachrichten",
+}
+# propaganda / yabanci dilli haber kanallari
+EXCLUDE_IDS = {"RTDE.ru", "RTDE.de", "MekameleenTV.tr", "AlmahriahTV.tr"}
+for _rid, _name in _TRT_RADIO:
+    _cid = f"{_rid}.radio.tr"
+    EXTRA_CHANNELS[_cid] = {"id": _cid, "name": _name, "country": "TR", "categories": ["music"], "group": RADYO_GROUP}
+    EXTRA_STREAMS.append({"channel": _cid, "url": f"https://radio-{_rid}.live.trt.com.tr/master.m3u8", "quality": ""})
 
 # Aile filtresi: isimde bunlar gecen kanallar listeye girmez (cocuklar icin)
 BLOCKED_NAMES = re.compile(
@@ -94,6 +123,8 @@ def is_sport(ch):
 
 
 def group_for(ch):
+    if ch.get("group"):
+        return ch["group"]
     cats = set(ch.get("categories") or [])
     name = ch["name"]
     if ch["country"] == "TR":
@@ -124,7 +155,7 @@ def group_for(ch):
 
 GROUP_ORDER = [
     "★ Favoriler", DIZI_GROUP, BELGESEL_GROUP, SPOR_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Dini", "TR · Diger",
-    "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Sonstige",
+    "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Sonstige", RADYO_GROUP,
 ]
 
 
@@ -204,6 +235,13 @@ def fallback_for(best_s, alts):
 def main(out_path="playlist.m3u"):
     print("Veri indiriliyor...")
     channels = {c["id"]: c for c in fetch_json("channels.json")}
+    for cid, extra in EXTRA_CHANNELS.items():
+        channels[cid] = dict(channels.get(cid) or {}, **extra)
+    for cid, grp in NEWS_OVERRIDE.items():
+        if cid in channels:
+            channels[cid] = dict(channels[cid], group=grp)
+    for cid in EXCLUDE_IDS:
+        channels.pop(cid, None)
     streams = fetch_json("streams.json")
     logos = {}
     try:
@@ -214,7 +252,7 @@ def main(out_path="playlist.m3u"):
 
     wanted = {
         cid: c for cid, c in channels.items()
-        if c.get("country") in COUNTRIES
+        if (c.get("country") in COUNTRIES or cid in EXTRA_CHANNELS)
         and not c.get("is_nsfw")
         and not c.get("closed")
         and not (set(c.get("categories") or []) & BLOCKED_CATEGORIES)
@@ -228,8 +266,12 @@ def main(out_path="playlist.m3u"):
     with ThreadPoolExecutor(max_workers=40) as ex:
         results = list(ex.map(check, candidates))
 
-    best, score, working = {}, {}, {}
+    best, score, working, forced = {}, {}, {}, {}
     for s, ok in zip(candidates, results):
+        if s.get("extra"):
+            if ok:
+                forced.setdefault(s["channel"], []).append(s)
+            continue
         if not ok:
             continue
         cid = s["channel"]
@@ -262,6 +304,8 @@ def main(out_path="playlist.m3u"):
     entries = []
     for cid, main_s in best.items():
         streams_for = [main_s] + ([fbs[cid]] if fbs.get(cid) else [])
+        seen = {x["url"] for x in streams_for}
+        streams_for += [x for x in forced.get(cid, []) if x["url"] not in seen]
         for s in streams_for:
             entries.extend(_entries_for(cid, s))
 
