@@ -28,6 +28,9 @@ DIZI_FILM = [
     "360.tr", "Tivi6.tr", "TV41.tr", "Kanal15.tr", "ASTV.tr", "Kanal26.tr", "ESTV.tr", "LiderHaber.tr",
 ]
 DIZI_GROUP = "TR · Dizi / Film / Yarisma"
+# Belgesel / Doku: documentary kategorisindeki tum kanallar + bunlar (TR once, sonra DE)
+BELGESEL_GROUP = "Belgesel / Doku"
+BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "CuriosityChannel.de"]
 DEFAULT_UA = "Mozilla/5.0 (Linux; Android 12; Google TV) AppleWebKit/537.36 Chrome/120 Safari/537.36"
 TIMEOUT = 10
 # GitHub sunuculari ABD'de: orada 403 (bolge kisitlamasi) veren link evde calisabilir.
@@ -112,7 +115,7 @@ def group_for(ch):
 
 
 GROUP_ORDER = [
-    "★ Favoriler", DIZI_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Spor", "TR · Dini", "TR · Diger",
+    "★ Favoriler", DIZI_GROUP, BELGESEL_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Spor", "TR · Dini", "TR · Diger",
     "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Sport", "DE · Sonstige",
 ]
 
@@ -240,6 +243,8 @@ def main(out_path="playlist.m3u"):
             groups.insert(0, "★ Favoriler")
         if cid in DIZI_FILM or (ch["country"] == "TR" and set(ch.get("categories") or []) & {"series", "movies"}):
             groups.append(DIZI_GROUP)
+        if cid in BELGESEL or "documentary" in (ch.get("categories") or []):
+            groups.append(BELGESEL_GROUP)
         if group_for(ch) == "TR · TRT" and set(ch.get("categories") or []) & {"kids", "animation"}:
             groups.append("TR · Cocuk")
         return [(g, ch, s) for g in groups]
@@ -255,6 +260,8 @@ def main(out_path="playlist.m3u"):
         fav = FAVORITES.index(ch["id"]) if g == "★ Favoriler" and ch["id"] in FAVORITES else 0
         if g == DIZI_GROUP:
             fav = DIZI_FILM.index(ch["id"]) if ch["id"] in DIZI_FILM else len(DIZI_FILM)
+        if g == BELGESEL_GROUP:
+            fav = 0 if ch["country"] == "TR" else 1
         return (GROUP_ORDER.index(g), fav, ch["name"].lower())
 
     entries.sort(key=sort_key)
