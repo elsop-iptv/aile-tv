@@ -30,6 +30,9 @@ DIZI_FILM = [
 DIZI_GROUP = "TR · Dizi / Film / Yarisma"
 # Belgesel / Doku: documentary kategorisindeki tum kanallar + bunlar (TR once, sonra DE)
 BELGESEL_GROUP = "Belgesel / Doku"
+# Spor / Sport: TR + DE tum ucretsiz spor kanallari tek grupta (TR once, sonra DE)
+SPOR_GROUP = "Spor / Sport"
+SPOR_NAME = re.compile(r"Spor|Sport|TJK|Motor", re.I)
 BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "CuriosityChannel.de"]
 DEFAULT_UA = "Mozilla/5.0 (Linux; Android 12; Google TV) AppleWebKit/537.36 Chrome/120 Safari/537.36"
 TIMEOUT = 10
@@ -40,6 +43,7 @@ GEO_TOLERANT = os.environ.get("GEO_TOLERANT") == "1"
 # iptv-org'da olmayan / ek resmi yayinlar
 EXTRA_STREAMS = [
     {"channel": "TVNET.tr", "url": "https://tvnet-live.lg.mncdn.com/tvnet-live/tvnet/playlist.m3u8", "quality": "1080p"},
+    {"channel": "TRTSpor.tr", "url": "https://trt.daioncdn.net/trtspor/master.m3u8?app=web&platform=trtspor", "quality": "720p"},
 ]
 
 # Aile filtresi: isimde bunlar gecen kanallar listeye girmez (cocuklar icin)
@@ -56,10 +60,10 @@ BLOCKED_NAMES = re.compile(
 # Ucretli (abonelikli) kanallar ve Turkce/Almanca olmayan yayinlar: hic eklenmez.
 PAID_OR_FOREIGN = re.compile(
     r"^(Sky |Sky$|Nicktoons|Nick Jr|GEM |GEM$|Curiosity NOW|Ost West|Disney|beIN|S Sport|Tivibu|Digiturk|"
-    r"Exxen|BluTV|DAZN|MagentaMusik|Al-Zahra|Al Zahra|Thaqalayn)", re.I)
+    r"Exxen|BluTV|DAZN(?!.*(Pluto|FAST))|Magenta|Eurosport|Sportdigital|Sport1\+|Motorvision\+|FC Bayern|Al-Zahra|Al Zahra|Thaqalayn)", re.I)
 
 FOREIGN_NAMES = re.compile(
-    r"de Pluto|by Pluto|x Pluto|Pluto TV (Alberto|Animales|Animaux|Aventure|Catastrofes|Christmas tutto|Cine |"
+    r"de Pluto|by Pluto|^(?!DAZN).*x Pluto|Pluto TV (Alberto|Animales|Animaux|Aventure|Catastrofes|Christmas tutto|Cine |"
     r"Cinema |Cocina|Comedia|Comedie|Cucina|Cuisine|Diseno|Documentari|Film |French|Gasolina|Histoire|Historia|"
     r"Impacto|Natura|Polar|Scherzi|Serie Sci|Series |Storia|Telenovelas|Telerealite|Toto|Viaggi|Bud)|"
     r"Cin Cin|Il Testimone|Tout le monde|Bob Esponja|Verguenza|Sophia TV (Espanol|Francais)|"
@@ -85,12 +89,18 @@ def quality_rank(q):
 TR_DINI = re.compile(r"^(Diyanet|Lalegul|Lalegül|Semerkand|Vav TV|Dost TV|Ulke TV|Ülke TV|Hilal|Mesaj TV|Rehber TV|Berat TV)", re.I)
 
 
+def is_sport(ch):
+    return bool(set(ch.get("categories") or []) & {"sports", "auto"}) or bool(SPOR_NAME.search(ch["name"]))
+
+
 def group_for(ch):
     cats = set(ch.get("categories") or [])
     name = ch["name"]
     if ch["country"] == "TR":
         if name.upper().startswith("TRT") or "TRT" in (ch.get("owners") or []) or ch.get("network") == "TRT":
             return "TR · TRT"
+        if is_sport(ch):
+            return SPOR_GROUP
         if cats & {"kids", "animation"}:
             return "TR · Cocuk"
         if "religious" in cats or TR_DINI.search(name):
@@ -99,8 +109,6 @@ def group_for(ch):
             return "TR · Haber"
         if cats & {"general", "entertainment", "series", "movies", "comedy"} or not cats:
             return "TR · Ulusal / Eglence"
-        if "sports" in cats:
-            return "TR · Spor"
         return "TR · Diger"
     # Almanya
     if cats & {"kids", "animation"}:
@@ -109,14 +117,14 @@ def group_for(ch):
         return "DE · ARD / ZDF / Offentlich"
     if "news" in cats or "business" in cats:
         return "DE · Nachrichten"
-    if "sports" in cats:
-        return "DE · Sport"
+    if is_sport(ch):
+        return SPOR_GROUP
     return "DE · Sonstige"
 
 
 GROUP_ORDER = [
-    "★ Favoriler", DIZI_GROUP, BELGESEL_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Spor", "TR · Dini", "TR · Diger",
-    "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Sport", "DE · Sonstige",
+    "★ Favoriler", DIZI_GROUP, BELGESEL_GROUP, SPOR_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Dini", "TR · Diger",
+    "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Sonstige",
 ]
 
 
@@ -245,6 +253,8 @@ def main(out_path="playlist.m3u"):
             groups.append(DIZI_GROUP)
         if cid in BELGESEL or "documentary" in (ch.get("categories") or []):
             groups.append(BELGESEL_GROUP)
+        if is_sport(ch) and SPOR_GROUP not in groups:
+            groups.append(SPOR_GROUP)
         if group_for(ch) == "TR · TRT" and set(ch.get("categories") or []) & {"kids", "animation"}:
             groups.append("TR · Cocuk")
         return [(g, ch, s) for g in groups]
@@ -260,7 +270,7 @@ def main(out_path="playlist.m3u"):
         fav = FAVORITES.index(ch["id"]) if g == "★ Favoriler" and ch["id"] in FAVORITES else 0
         if g == DIZI_GROUP:
             fav = DIZI_FILM.index(ch["id"]) if ch["id"] in DIZI_FILM else len(DIZI_FILM)
-        if g == BELGESEL_GROUP:
+        if g in (BELGESEL_GROUP, SPOR_GROUP):
             fav = 0 if ch["country"] == "TR" else 1
         return (GROUP_ORDER.index(g), fav, ch["name"].lower())
 
