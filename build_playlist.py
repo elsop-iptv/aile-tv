@@ -77,6 +77,9 @@ def quality_rank(q):
     return int(m.group(1)) if m else 0
 
 
+TR_DINI = re.compile(r"^(Diyanet|Lalegul|Lalegül|Semerkand|Vav TV|Dost TV|Ulke TV|Ülke TV|Hilal|Mesaj TV|Rehber TV|Berat TV)", re.I)
+
+
 def group_for(ch):
     cats = set(ch.get("categories") or [])
     name = ch["name"]
@@ -85,6 +88,8 @@ def group_for(ch):
             return "TR · TRT"
         if cats & {"kids", "animation"}:
             return "TR · Cocuk"
+        if "religious" in cats or TR_DINI.search(name):
+            return "TR · Dini"
         if "news" in cats or "business" in cats:
             return "TR · Haber"
         if cats & {"general", "entertainment", "series", "movies", "comedy"} or not cats:
@@ -105,7 +110,7 @@ def group_for(ch):
 
 
 GROUP_ORDER = [
-    "★ Favoriler", DIZI_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Spor", "TR · Diger",
+    "★ Favoriler", DIZI_GROUP, "TR · TRT", "TR · Haber", "TR · Cocuk", "TR · Ulusal / Eglence", "TR · Spor", "TR · Dini", "TR · Diger",
     "DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Sport", "DE · Sonstige",
 ]
 
