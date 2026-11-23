@@ -9,8 +9,16 @@ https://tv-trt1.medya.trt.com.tr/master.m3u8
 https://tv-trt1.medya.trt.com.tr/master_720.m3u8
 #EXTINF:-1 tvg-id="TVNET.tr" tvg-logo="https://i.imgur.com/mQo8yWQ.png" group-title="★ Favoriler",TVNET (1080p)
 https://tvnet-live.lg.mncdn.com/tvnet-live/tvnet/playlist.m3u8
+#EXTINF:-1 tvg-id="AgroTV.tr" tvg-logo="https://i.imgur.com/ls9NLa4.png" group-title="TR · Belgesel",Agro TV (1080p)
+https://agro.fatihdemirsoy.com:8181/memfs/master.m3u8
+#EXTINF:-1 tvg-id="AgroTV.tr" tvg-logo="https://i.imgur.com/ls9NLa4.png" group-title="TR · Belgesel",Agro TV (720p)
+https://agro.fatihdemirsoy.com:8181/memfs/0876d372-27fb-4ed1-b07d-203141c92770_output_0.m3u8?session=XT8okfpDULn4ZzXwyv9sqF
 #EXTINF:-1 tvg-id="CiftciTV.tr" tvg-logo="https://i.imgur.com/CLzP4vL.png" group-title="TR · Belgesel",Ciftci TV (720p)
 https://live.artidijitalmedya.com/artidijital_ciftcitv/ciftcitv/playlist.m3u8
+#EXTINF:-1 tvg-id="GZT.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/GZT_logo.svg/960px-GZT_logo.svg.png" group-title="TR · Belgesel",GZT (1080p)
+https://gzttv-live.lg.mncdn.com/gzttv-live/gzttv/playlist.m3u8
+#EXTINF:-1 tvg-id="NaturalTV.tr" tvg-logo="https://i.imgur.com/rfcJ674.png" group-title="TR · Belgesel",Natural TV (1080p)
+https://edge1.taksimbilisim.com/naturaltv/bant1/playlist.m3u8
 #EXTINF:-1 tvg-id="TGRTBelgesel.tr" tvg-logo="https://i.imgur.com/VwWTnf0.png" group-title="TR · Belgesel",TGRT Belgesel (576p)
 https://b01c02nl.mediatriple.net/videoonlylive/mtsxxkzwwuqtglive/broadcast_5fe462afc6a0e.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="TRTBelgesel.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/TRT_Belgesel_logo_%282019-%29.svg/960px-TRT_Belgesel_logo_%282019-%29.svg.png" group-title="TR · Belgesel",TRT Belgesel (720p)
@@ -58,8 +66,6 @@ https://turkmedya-live.ercdn.net/tv360/tv360.m3u8
 https://turkmedya-live.ercdn.net/tv360/tv360_720p.m3u8
 #EXTINF:-1 tvg-id="ASTV.tr" tvg-logo="https://asset.artidijitalmedya.com/image/188x188/channels/v1/logo_13.png" group-title="TR · Dizi / Film / Yarisma",AS TV (900p)
 https://live.artidijitalmedya.com/artidijital_astv/astv/playlist.m3u8
-#EXTINF:-1 tvg-id="ATV.tr" tvg-logo="https://i.imgur.com/HyVUwFC.png" group-title="TR · Dizi / Film / Yarisma",ATV (1080p)
-https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv_1080p.m3u8
 #EXTINF:-1 tvg-id="ATV.tr" tvg-logo="https://i.imgur.com/HyVUwFC.png" group-title="TR · Dizi / Film / Yarisma",ATV (360p)
 http://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv_360p.m3u8
 #EXTINF:-1 tvg-id="CNBCe.tr" tvg-logo="https://s.cnbce.com/dist/images/logo-nav.png" group-title="TR · Dizi / Film / Yarisma",CNBC-e (1080p)
@@ -106,6 +112,20 @@ https://turkmedya-live.ercdn.net/tv4/tv4_720p.m3u8
 https://live.artidijitalmedya.com/artidijital_tv41/tv41/playlist.m3u8
 #EXTINF:-1 tvg-id="TV8.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/thumb/6/68/Tv8_Yeni_Logo.png/960px-Tv8_Yeni_Logo.png" group-title="TR · Dizi / Film / Yarisma",TV8 (1080p)
 https://tv8.daioncdn.net/tv8/tv8.m3u8?app=7ddc255a-ef47-4e81-ab14-c0e5f2949788&ce=3
+#EXTINF:-1 tvg-id="APara.tr" tvg-logo="https://i.imgur.com/GjHnq0c.png" group-title="TR · Ekonomi",A Para (1080p)
+https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/apara/apara.m3u8
+#EXTINF:-1 tvg-id="APara.tr" tvg-logo="https://i.imgur.com/GjHnq0c.png" group-title="TR · Ekonomi",A Para (720p)
+https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/apara/apara_720p.m3u8
+#EXTINF:-1 tvg-id="BloombergHT.tr" tvg-logo="https://i.imgur.com/bmkXfIE.png" group-title="TR · Ekonomi",Bloomberg HT (720p)
+https://mumbai-edge.smartplaytv.in/BloombergHT/index.m3u8
+#EXTINF:-1 tvg-id="CNBCe.tr" tvg-logo="https://s.cnbce.com/dist/images/logo-nav.png" group-title="TR · Ekonomi",CNBC-e (1080p)
+https://hnpsechtsc.turknet.ercdn.net/xpnvudnlsv/cnbc-e/cnbc-e.m3u8
+#EXTINF:-1 tvg-id="CNBCe.tr" tvg-logo="https://s.cnbce.com/dist/images/logo-nav.png" group-title="TR · Ekonomi",CNBC-e (720p)
+https://hnpsechtsc.turknet.ercdn.net/xpnvudnlsv/cnbc-e/cnbc-e_720p.m3u8
+#EXTINF:-1 tvg-id="Ekoturk.tr" tvg-logo="https://www.dsmart.com.tr/epg/images/0x60/5ffc18c6cfef0b15933a8b65" group-title="TR · Ekonomi",Ekoturk (720p)
+https://cdn.ekoturk.net/hls/master.m3u8
+#EXTINF:-1 tvg-id="FinansTurkTV.tr" tvg-logo="https://i.ibb.co/wBwmB1T/iY0osc7.png" group-title="TR · Ekonomi",Finans Turk TV (720p)
+https://yayin30.haber100.com/live/finansturk/playlist.m3u8
 #EXTINF:-1 tvg-id="24TV.tr" tvg-logo="https://i.imgur.com/8FO41es.png" group-title="TR · Haber",24 TV (1080p)
 https://tv.ensonhaber.com/tv24/tv24.m3u8
 #EXTINF:-1 tvg-id="24TV.tr" tvg-logo="https://i.imgur.com/8FO41es.png" group-title="TR · Haber",24 TV (720p)
@@ -120,22 +140,12 @@ https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/ahaber/ahaber.m3u8
 https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/ahaber/ahaber_720p.m3u8
 #EXTINF:-1 tvg-id="ASTV.tr" tvg-logo="https://asset.artidijitalmedya.com/image/188x188/channels/v1/logo_13.png" group-title="TR · Haber",AS TV (900p)
 https://live.artidijitalmedya.com/artidijital_astv/astv/playlist.m3u8
-#EXTINF:-1 tvg-id="BloombergHT.tr" tvg-logo="https://i.imgur.com/bmkXfIE.png" group-title="TR · Haber",Bloomberg HT (720p)
-https://mumbai-edge.smartplaytv.in/BloombergHT/index.m3u8
-#EXTINF:-1 tvg-id="CNBCe.tr" tvg-logo="https://s.cnbce.com/dist/images/logo-nav.png" group-title="TR · Haber",CNBC-e (1080p)
-https://hnpsechtsc.turknet.ercdn.net/xpnvudnlsv/cnbc-e/cnbc-e.m3u8
-#EXTINF:-1 tvg-id="CNBCe.tr" tvg-logo="https://s.cnbce.com/dist/images/logo-nav.png" group-title="TR · Haber",CNBC-e (720p)
-https://hnpsechtsc.turknet.ercdn.net/xpnvudnlsv/cnbc-e/cnbc-e_720p.m3u8
 #EXTINF:-1 tvg-id="CNNTurk.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/CNN_T%C3%BCrk_logo.svg/960px-CNN_T%C3%BCrk_logo.svg.png" group-title="TR · Haber",CNN Turk (Otomatik kalite)
 https://live.duhnet.tv//S2/HLS_LIVE/cnnturknp/playlist.m3u8?&live=true&app=com.cnnturk&st=BvaIMJYFy8po8BWcl5gKEg&e=1795391820
 #EXTINF:-1 tvg-id="CNNTurk.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/CNN_T%C3%BCrk_logo.svg/960px-CNN_T%C3%BCrk_logo.svg.png" group-title="TR · Haber",CNN Turk (1080p)
 http://85.117.61.84/cnnturk/index.m3u8
 #EXTINF:-1 tvg-id="DHA.tr" tvg-logo="https://i.imgur.com/VZhag2x.png" group-title="TR · Haber",DHA (720p)
 https://603c568fccdf5.streamlock.net/live/dhaweb1_C5efC/playlist.m3u8
-#EXTINF:-1 tvg-id="Ekoturk.tr" tvg-logo="https://www.dsmart.com.tr/epg/images/0x60/5ffc18c6cfef0b15933a8b65" group-title="TR · Haber",Ekoturk (720p)
-https://cdn.ekoturk.net/hls/master.m3u8
-#EXTINF:-1 tvg-id="FinansTurkTV.tr" tvg-logo="https://i.ibb.co/wBwmB1T/iY0osc7.png" group-title="TR · Haber",Finans Turk TV (720p)
-https://yayin30.haber100.com/live/finansturk/playlist.m3u8
 #EXTINF:-1 tvg-id="FlashHaberTV.tr" tvg-logo="" group-title="TR · Haber",Flash Haber TV (1080p)
 https://b01c02nl.mediatriple.net/videoonlylive/mtyycglqauzjhlive/broadcast_67c053c48829f.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="FlashHaberTV.tr" tvg-logo="" group-title="TR · Haber",Flash Haber TV (540p)
@@ -162,8 +172,12 @@ https://raw.githubusercontent.com/yaskar661-lgtm/stream/refs/heads/main/filbox/s
 https://tele1-live.ercdn.net/tele1/tele1.m3u8
 #EXTINF:-1 tvg-id="Tele1.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/4/43/Tele1_logosu.png" group-title="TR · Haber",Tele 1 (720p)
 https://tele1-live.ercdn.net/tele1/tele1_720p.m3u8
-#EXTINF:-1 tvg-id="TGRTHaber.tr" tvg-logo="https://i.imgur.com/PrxwKDw.png" group-title="TR · Haber",TGRT Haber (720p)
-https://canli.tgrthaber.com/tgrt.m3u8
+#EXTINF:-1 tvg-id="TGRTHaber.tr" tvg-logo="https://i.imgur.com/PrxwKDw.png" group-title="TR · Haber",TGRT Haber (360p)
+https://b01c02nl.mediatriple.net/videoonlylive/mtsxxkzwwuqtglive/broadcast_5fe4598be8e5d.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="TV100.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/TV100_logo.png/960px-TV100_logo.png" group-title="TR · Haber",TV100 (1080p)
+https://tv.ensonhaber.com/tv100/tv100.m3u8
+#EXTINF:-1 tvg-id="TV100.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/tr/thumb/0/0f/TV100_logo.png/960px-TV100_logo.png" group-title="TR · Haber",TV100 (720p)
+https://tv.ensonhaber.com/tv100/tv100_720p.m3u8
 #EXTINF:-1 tvg-id="TVNET.tr" tvg-logo="https://i.imgur.com/mQo8yWQ.png" group-title="TR · Haber",TVNET (1080p)
 https://tvnet-live.lg.mncdn.com/tvnet-live/tvnet/playlist.m3u8
 #EXTINF:-1 tvg-id="FortunaTV.tr" tvg-logo="https://i.imgur.com/ZbUSlOC.png" group-title="TR · Kultur / Yasam",Fortuna TV (1080p)
@@ -216,6 +230,8 @@ https://tjktv-live.tjk.org/tjktv_720p.m3u8
 https://trt.daioncdn.net/trtspor/master.m3u8?app=web&platform=trtspor
 #EXTINF:-1 tvg-id="TRTSporYildiz.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/TRT_Spor_Y%C4%B1ld%C4%B1z_Logo.svg/960px-TRT_Spor_Y%C4%B1ld%C4%B1z_Logo.svg.png" group-title="TR · Spor",TRT Spor Yildiz (1440p)
 https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor
+#EXTINF:-1 tvg-id="TabiiTV.tr" tvg-logo="" group-title="TR · TRT",tabii TV (1080p)
+https://ceokzokgtd.erbvr.com/tabiitv/tabiitv.m3u8
 #EXTINF:-1 tvg-id="TBMMTV.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/TBMM_TV_logo.svg/960px-TBMM_TV_logo.svg.png" group-title="TR · TRT",TBMM TV (720p)
 https://meclistv-live.ercdn.net/meclistv/meclistv.m3u8
 #EXTINF:-1 tvg-id="TRT1.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/TRT_1_logo_%282021-%29.svg/960px-TRT_1_logo_%282021-%29.svg.png" group-title="TR · TRT",TRT 1 (1440p)
@@ -258,6 +274,10 @@ https://tv-trtgenc.medya.trt.com.tr/master_720.m3u8
 https://tv-trthaber.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="TRTHaber.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/TRT_Haber_Eyl%C3%BCl_2020_Logo.svg/960px-TRT_Haber_Eyl%C3%BCl_2020_Logo.svg.png" group-title="TR · TRT",TRT Haber (720p)
 https://tv-trthaber.medya.trt.com.tr/master_720.m3u8
+#EXTINF:-1 tvg-id="TRTKurdi.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/TRT_Kurd%C3%AE_logo.svg/960px-TRT_Kurd%C3%AE_logo.svg.png" group-title="TR · TRT",TRT Kurdî (1440p)
+https://tv-trtkurdi.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTKurdi.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/TRT_Kurd%C3%AE_logo.svg/960px-TRT_Kurd%C3%AE_logo.svg.png" group-title="TR · TRT",TRT Kurdî (720p)
+https://tv-trtkurdi.medya.trt.com.tr/master_720.m3u8
 #EXTINF:-1 tvg-id="TRTMuzik.tr" tvg-logo="https://i.imgur.com/JgUzRH8.png" group-title="TR · TRT",TRT Muzik (1080p)
 https://stream8.cinerama.uz/1208/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="TRTMuzik.tr" tvg-logo="https://i.imgur.com/JgUzRH8.png" group-title="TR · TRT",TRT Muzik (720p)
@@ -270,6 +290,10 @@ https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor
 https://tv-trtturk.medya.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="TRTTurk.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/TRT_T%C3%BCrk_logo.svg/960px-TRT_T%C3%BCrk_logo.svg.png" group-title="TR · TRT",TRT Turk (720p)
 https://tv-trtturk.medya.trt.com.tr/master_720.m3u8
+#EXTINF:-1 tvg-id="TRTWorld.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/TRT_World.svg/960px-TRT_World.svg.png" group-title="TR · TRT",TRT World (1440p)
+https://tv-trtworld.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTWorld.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/TRT_World.svg/960px-TRT_World.svg.png" group-title="TR · TRT",TRT World (720p)
+https://tv-trtworld.medya.trt.com.tr/master_720.m3u8
 #EXTINF:-1 tvg-id="A2TV.tr" tvg-logo="https://iatv.tmgrup.com.tr/site/v2/a2tv/i/a2tv-logo.png" group-title="TR · Ulusal / Eglence",A2TV (1080p)
 https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/a2tv/a2tv.m3u8
 #EXTINF:-1 tvg-id="A2TV.tr" tvg-logo="https://iatv.tmgrup.com.tr/site/v2/a2tv/i/a2tv-logo.png" group-title="TR · Ulusal / Eglence",A2TV (720p)
@@ -282,8 +306,6 @@ https://api-tv3.yayin.com.tr/postatv/postatv/playlist.m3u8
 https://live.artidijitalmedya.com/artidijital_anadolunet/anadolunet/playlist.m3u8
 #EXTINF:-1 tvg-id="ArasTV.tr" tvg-logo="https://i.imgur.com/JsDCyWG.png" group-title="TR · Ulusal / Eglence",Aras TV (576p)
 http://1.rtmp.org/tv217/yayin.stream/playlist.m3u8
-#EXTINF:-1 tvg-id="ATV.tr" tvg-logo="https://i.imgur.com/HyVUwFC.png" group-title="TR · Ulusal / Eglence",ATV (1080p)
-https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv_1080p.m3u8
 #EXTINF:-1 tvg-id="ATV.tr" tvg-logo="https://i.imgur.com/HyVUwFC.png" group-title="TR · Ulusal / Eglence",ATV (360p)
 http://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv_360p.m3u8
 #EXTINF:-1 tvg-id="BenguturkTV.tr" tvg-logo="https://i.imgur.com/p3ON1oX.png" group-title="TR · Ulusal / Eglence",Benguturk TV (720p)
@@ -365,11 +387,11 @@ https://uycyyuuzyh.turknet.ercdn.net/nphindgytw/nowtv/nowtv_720p.m3u8
 #EXTINF:-1 tvg-id="PowerTV.tr" tvg-logo="https://i.imgur.com/XSL1gd7.png" group-title="TR · Ulusal / Eglence",Power TV (1080p)
 https://livetv.powerapp.com.tr/powerTV/powerhd.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="PowerTV.tr" tvg-logo="https://i.imgur.com/XSL1gd7.png" group-title="TR · Ulusal / Eglence",Power TV (720p)
-https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunklist_b2496000_sltur.m3u8?nimblesessionid=1226225617
+https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunklist_b2496000_sltur.m3u8?nimblesessionid=1226325188
 #EXTINF:-1 tvg-id="PowerTurkTV.tr" tvg-logo="https://i.imgur.com/9OPoXQG.png" group-title="TR · Ulusal / Eglence",PowerTurk TV (1080p)
 https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="PowerTurkTV.tr" tvg-logo="https://i.imgur.com/9OPoXQG.png" group-title="TR · Ulusal / Eglence",PowerTurk TV (720p)
-https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/chunklist_b2496000_sltur.m3u8?nimblesessionid=1226225616
+https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/chunklist_b2496000_sltur.m3u8?nimblesessionid=1226325185
 #EXTINF:-1 tvg-id="StarTV.tr" tvg-logo="https://i.imgur.com/9O3DHRB.png" group-title="TR · Ulusal / Eglence",Star TV (720p)
 https://dogus.daioncdn.net/startv/startv_720p.m3u8?app=a20ac41e-bdc3-4aa1-934d-26b484480ac9&ce=3&sid=8l4w3lst4co5
 #EXTINF:-1 tvg-id="SunRTV.tr" tvg-logo="https://i.imgur.com/64tph9N.png" group-title="TR · Ulusal / Eglence",Sun RTV (720p)
@@ -400,6 +422,28 @@ https://tv8.daioncdn.net/tv8/tv8.m3u8?app=7ddc255a-ef47-4e81-ab14-c0e5f2949788&c
 https://live.artidijitalmedya.com/artidijital_urfanatiktv/urfanatiktv/playlist.m3u8
 #EXTINF:-1 tvg-id="Van65TV.tr" tvg-logo="https://van65tv.com/assets/images/logo/logo.png" group-title="TR · Ulusal / Eglence",Van 65 TV (720p)
 https://live.artidijitalmedya.com/artidijital_van65/van65/playlist.m3u8
+#EXTINF:-1 tvg-id="AltasTV.tr" tvg-logo="https://i.imgur.com/XaJ7fp6.png" group-title="TR · Yerel",Altaş TV (Ordu) (720p)
+https://edge1.taksimbilisim.com/altastv/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="ETVManisa.tr" tvg-logo="https://i.ibb.co/QKXtdkz/sOd3INg.png" group-title="TR · Yerel",ETV Manisa (1080p)
+https://edge1.taksimbilisim.com/manisaetv/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="GuneydoguTV.tr" tvg-logo="https://i.imgur.com/JT5pp3Y.png" group-title="TR · Yerel",Güneydoğu TV (720p)
+https://edge1.taksimbilisim.com/gtv/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="IcelTV.tr" tvg-logo="https://i.imgur.com/CGwImKv.png" group-title="TR · Yerel",İçel TV (1080p)
+https://edge1.taksimbilisim.com/iceltv/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="Kanal32.tr" tvg-logo="" group-title="TR · Yerel",Kanal 32 (720p)
+https://edge1.taksimbilisim.com/kanal32/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="KanalUrfa.tr" tvg-logo="https://i.imgur.com/EvgQmoT.png" group-title="TR · Yerel",Kanal Urfa
+https://edge1.taksimbilisim.com/kanalurfa/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="LineTV.tr" tvg-logo="https://i.imgur.com/6GNp7f8.png" group-title="TR · Yerel",Line TV (720p)
+https://edge1.taksimbilisim.com/linetv/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="MTurkTV.tr" tvg-logo="https://i.imgur.com/xj1gvrq.png" group-title="TR · Yerel",Muğla Türk TV (720p)
+https://edge1.taksimbilisim.com/muglaturk/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="TV52.tr" tvg-logo="https://i.imgur.com/k4R5CzO.png" group-title="TR · Yerel",TV 52 (Ordu) (720p)
+https://edge1.taksimbilisim.com/tv52/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="TV1.tr" tvg-logo="https://i.imgur.com/8CtrYVb.png" group-title="TR · Yerel",TV1 (720p)
+https://edge1.taksimbilisim.com/tv1/bant1/playlist.m3u8
+#EXTINF:-1 tvg-id="CayTV.tr" tvg-logo="https://i.imgur.com/ndupxwu.png" group-title="TR · Yerel",Çay TV (Rize) (720p)
+https://edge1.taksimbilisim.com/caytv/bant1/playlist.m3u8
 #EXTINF:-1 tvg-id="3sat.de" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/3sat_2019.svg/960px-3sat_2019.svg.png" group-title="DE · ARD / ZDF / Offentlich",3sat (720p)
 https://zdf-hls-18.akamaized.net/hls/live/2016501/dach/high/master.m3u8
 #EXTINF:-1 tvg-id="ARDalpha.de" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/ARD_alpha.svg/960px-ARD_alpha.svg.png" group-title="DE · ARD / ZDF / Offentlich",ARD-alpha (720p)
@@ -491,7 +535,7 @@ https://jmp2.uk/plu-6576c20fb3801200084786c9.m3u8
 #EXTINF:-1 tvg-id="TerraMaterWILD.de" tvg-logo="https://d3b6luslimvglo.cloudfront.net/images/79/rlaxximages/channels-rescaled/icon-white/terramaterwild_white.png" group-title="DE · Doku",Terra Mater WILD (1080p)
 https://53ff3982.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmxheHhUVi1ldV9UZXJyYU1hdGVyV2lsZF9ITFM/playlist.m3u8
 #EXTINF:-1 tvg-id="TerraMaterWILD.de" tvg-logo="https://d3b6luslimvglo.cloudfront.net/images/79/rlaxximages/channels-rescaled/icon-white/terramaterwild_white.png" group-title="DE · Doku",Terra Mater WILD (720p)
-https://53ff3982.wurl.com/manifest/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmxheHhUVi1ldV9UZXJyYU1hdGVyV2lsZF9ITFM/7b1e3757-b67f-45ef-b049-d8307d4a2744/4.m3u8
+https://53ff3982.wurl.com/manifest/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmxheHhUVi1ldV9UZXJyYU1hdGVyV2lsZF9ITFM/d587beac-0ba1-48e3-924e-98eb3673fdfb/4.m3u8
 #EXTINF:-1 tvg-id="ZDFinfo.de" tvg-logo="https://i.imgur.com/vtq1IWp.png" group-title="DE · Doku",ZDFinfo (720p)
 https://r.eu.cdn-redge.media/livehls/oeu/mt/live/zdfinfo/live.livx/playlist.m3u8
 #EXTINF:-1 tvg-id="90210.de" tvg-logo="https://i.imgur.com/xqo5PxO.png" group-title="DE · Filme / Serien",90210
@@ -572,6 +616,8 @@ https://jmp2.uk/plu-5d00e8adaab96b5635b2a005.m3u8
 https://jmp2.uk/plu-5d6792bd6be2998ad0ccce30.m3u8
 #EXTINF:-1 tvg-id="Zoey101.de" tvg-logo="" group-title="DE · Kinder",Zoey 101
 https://jmp2.uk/plu-63c69e6c4207be0007f73c22.m3u8
+#EXTINF:-1 tvg-id="AdriaMusicTelevision.de" tvg-logo="https://i.imgur.com/QoDpnKg.png" group-title="DE · Musik",Adria Music Television
+https://adriaapp.b-cdn.net/1080p/index.m3u8
 #EXTINF:-1 tvg-id="BibelTVMusik.de" tvg-logo="https://i.imgur.com/yIqOcP5.png" group-title="DE · Musik",Bibel TV Musik (720p)
 https://bibeltv03.iptv-playoutcenter.de/bibeltv03/bibeltv03.stream_1/playlist.m3u8
 #EXTINF:-1 tvg-id="DASDING908.de" tvg-logo="https://i.imgur.com/BmklHs8.png" group-title="DE · Musik",DASDING 90.8 (1080p)
@@ -586,12 +632,20 @@ https://sdn-global-live-streaming-packager-cache.3qsdn.com/13456/13456_264_live.
 https://sdn-global-live-streaming-packager-cache.3qsdn.com/65183/65183_264_live.m3u8
 #EXTINF:-1 tvg-id="DMF.de" tvg-logo="https://i.imgur.com/sJaBU7X.jpeg" group-title="DE · Musik",DMF (1080p)
 https://d-m-f.iptv-playoutcenter.de/dmf/dmf1/playlist.m3u8
+#EXTINF:-1 tvg-id="FolxMusicTelevision.de" tvg-logo="https://i.imgur.com/ze04puX.png" group-title="DE · Musik",Folx Music Television
+https://folxapp.b-cdn.net/1080p/index.m3u8
 #EXTINF:-1 tvg-id="Lausitzwelle.de" tvg-logo="https://i.imgur.com/4kYF4bK.png" group-title="DE · Musik",Lausitzwelle (1080p)
 https://h056.video-stream-hosting.de/easycast11-live/_definst_/mp4:livestreamhd2/playlist.m3u8?ref=
+#EXTINF:-1 tvg-id="OneAdria.de" tvg-logo="https://i.imgur.com/NYkMamU.png" group-title="DE · Musik",One Adria
+https://oneadriaapp.b-cdn.net/1080p/index.m3u8
+#EXTINF:-1 tvg-id="OneMusicTelevision.de" tvg-logo="https://i.imgur.com/dLgoKJ0.png" group-title="DE · Musik",One Music Television
+https://oneapp.b-cdn.net/1080p/index.m3u8
 #EXTINF:-1 tvg-id="TVBozsikeHamburgHD.de" tvg-logo="https://radiobozsike.com/img/icons/android-chrome-512x512.png" group-title="DE · Musik",TV Bozsike Hamburg HD (1080p)
 https://rtmp.radiobozsike.com/hls/stream1.m3u8
 #EXTINF:-1 tvg-id="VolksmusikTV.de" tvg-logo="https://i.imgur.com/EsWuCJ3.png" group-title="DE · Musik",Volksmusik TV (1080p)
 https://vmtv.iptv-playoutcenter.de/vmtv/vmtv1/playlist.m3u8
+#EXTINF:-1 tvg-id="ZweiMusicTelevision.de" tvg-logo="https://i.imgur.com/RbdpCNf.png" group-title="DE · Musik",Zwei Music Television
+https://zweiapp.b-cdn.net/1080p/index.m3u8
 #EXTINF:-1 tvg-id="EuronewsGerman.fr" tvg-logo="https://i.imgur.com/8t9mdg9.png" group-title="DE · Nachrichten",Euronews German (720p)
 https://jmp2.uk/plu-6639d7d4b18d700008da5316.m3u8
 #EXTINF:-1 tvg-id="ntv.de" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/N-tv_logo-september2017.svg/960px-N-tv_logo-september2017.svg.png" group-title="DE · Nachrichten",n-tv
@@ -599,7 +653,7 @@ https://dash4.antik.sk/live/test_ntv_tizen/playlist.m3u8
 #EXTINF:-1 tvg-id="Nachrichten360.de" tvg-logo="https://i.imgur.com/CwxYslK.png" group-title="DE · Nachrichten",Nachrichten 360 (1080p)
 https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01821-lovetvfast-nachrichten360-samsungde/playlist.m3u8
 #EXTINF:-1 tvg-id="Nachrichten360.de" tvg-logo="https://i.imgur.com/CwxYslK.png" group-title="DE · Nachrichten",Nachrichten 360 (720p)
-https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01821-lovetvfast-nachrichten360-samsungde/81b1ee6c-abba-4ff8-8464-68e0ee32f938/3.m3u8
+https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01821-lovetvfast-nachrichten360-samsungde/b5b99871-6b4a-4502-8135-fc8d6d7ce00e/3.m3u8
 #EXTINF:-1 tvg-id="Parlamentsfernsehen1.de" tvg-logo="https://i.imgur.com/mksEgwx.png" group-title="DE · Nachrichten",Parlamentsfernsehen 1 (1080p)
 https://cldf-hlsgw.r53.cdn.tv1.eu/1000153copo/hk1.m3u8
 #EXTINF:-1 tvg-id="Parlamentsfernsehen2.de" tvg-logo="https://i.imgur.com/mksEgwx.png" group-title="DE · Nachrichten",Parlamentsfernsehen 2 (1080p)
@@ -632,6 +686,8 @@ https://stream02.welocal.stream/stream/fhd-augsburgtv_104951/ngrp:stream_all/pla
 https://stream02.welocal.stream/stream/fhd-augsburgtv_104951/ngrp:stream_all/chunklist_b946000.m3u8
 #EXTINF:-1 tvg-id="ErzTVStollberg.de" tvg-logo="https://i.imgur.com/6FHl9B1.png" group-title="DE · Regional",Erz-TV Stollberg (576p)
 https://5acade5fc0c29.streamlock.net/kabeljournal/live2020.stream/playlist.m3u8
+#EXTINF:-1 tvg-id="Filstalwelle.de" tvg-logo="https://i.imgur.com/19iKLvf.png" group-title="DE · Regional",Filstalwelle (1080p)
+https://h055.video-stream-hosting.de/filstalwelle-live/_definst_/mp4:livestream/playlist.m3u8
 #EXTINF:-1 tvg-id="FrankenFernsehen.de" tvg-logo="https://i.imgur.com/3pGGLLD.png" group-title="DE · Regional",Franken Fernsehen (1080p)
 https://frankentv.iptv-playoutcenter.de/frankentv/frankentv.stream_1/playlist.m3u8
 #EXTINF:-1 tvg-id="iSTUFF.de" tvg-logo="https://i.imgur.com/1V3UXVb.jpg" group-title="DE · Regional",iSTUFF (720p)
@@ -647,7 +703,7 @@ https://muenchentv.iptv-playoutcenter.de/muenchentv/muenchentv.stream_1/playlist
 #EXTINF:-1 tvg-id="NiederbayernTV.de" tvg-logo="https://i.imgur.com/9uaMgTk.png" group-title="DE · Regional",Niederbayern TV (1080p)
 https://stream03.welocal.stream/stream/sat-nby/ngrp:sat-nby.stream_all/index.m3u8
 #EXTINF:-1 tvg-id="NiederbayernTV.de" tvg-logo="https://i.imgur.com/9uaMgTk.png" group-title="DE · Regional",Niederbayern TV (480p)
-https://stream03.welocal.stream/stream/sat-nby/ngrp:sat-nby.stream_all/chunklist_w1137802082_b946000.m3u8
+https://stream03.welocal.stream/stream/sat-nby/ngrp:sat-nby.stream_all/chunklist_w1850423035_b946000.m3u8
 #EXTINF:-1 tvg-id="NiederbayernTVDeggendorfStraubing.de" tvg-logo="https://i.imgur.com/mAaIh3C.png" group-title="DE · Regional",Niederbayern TV Deggendorf & Straubing (1080p)
 https://stream03.welocal.stream/stream/fhd-nbydeggendorf_99148/ngrp:stream_all/index.m3u8
 #EXTINF:-1 tvg-id="NiederbayernTVDeggendorfStraubing.de" tvg-logo="https://i.imgur.com/mAaIh3C.png" group-title="DE · Regional",Niederbayern TV Deggendorf & Straubing (480p)
@@ -667,7 +723,7 @@ https://hls1.wtnet.de/noa4/apple/wifi6500.m3u8
 #EXTINF:-1 tvg-id="NRWision.de" tvg-logo="https://i.imgur.com/RkF2Kmx.png" group-title="DE · Regional",NRWision (1080p)
 https://fms.nrwision.de/live/ngrp:livestreamHD.stream/playlist.m3u8
 #EXTINF:-1 tvg-id="NRWision.de" tvg-logo="https://i.imgur.com/RkF2Kmx.png" group-title="DE · Regional",NRWision (720p)
-https://fms.nrwision.de/live/ngrp:livestreamHD.stream/chunklist_w1825860115_b3128000.m3u8
+https://fms.nrwision.de/live/ngrp:livestreamHD.stream/chunklist_w525284162_b3128000.m3u8
 #EXTINF:-1 tvg-id="OberpfalzTV.de" tvg-logo="https://i.imgur.com/ISI5KDd.png" group-title="DE · Regional",Oberpfalz TV (1080p)
 https://oberpfalztv.iptv-playoutcenter.de/oberpfalztv/oberpfalztv.stream_1/playlist.m3u8
 #EXTINF:-1 tvg-id="OKDessau.de" tvg-logo="https://i.imgur.com/nx4Wc8l.png" group-title="DE · Regional",OK Dessau (1080p)
@@ -739,7 +795,7 @@ https://tvoberfranken.iptv-playoutcenter.de/tvoberfranken/tvoberfranken.stream_1
 #EXTINF:-1 tvg-id="TV38SudostNiedersachen.de" tvg-logo="https://i.imgur.com/ob9JJPU.png" group-title="DE · Regional",TV38 Sudost-Niedersachen (1080p)
 https://h057.video-stream-hosting.de/tv38-live/_definst_/smil:livestream.smil/playlist.m3u8?ref=
 #EXTINF:-1 tvg-id="TV38SudostNiedersachen.de" tvg-logo="https://i.imgur.com/ob9JJPU.png" group-title="DE · Regional",TV38 Sudost-Niedersachen (480p)
-https://h057.video-stream-hosting.de/tv38-live/_definst_/smil:livestream.smil/chunklist_w1233249520_b1200000.m3u8?ref=
+https://h057.video-stream-hosting.de/tv38-live/_definst_/smil:livestream.smil/chunklist_w2145375978_b1200000.m3u8?ref=
 #EXTINF:-1 tvg-id="TVA.de" tvg-logo="https://i.imgur.com/Gg6d4Jb.png" group-title="DE · Regional",TVA (1080p)
 https://tvaktuellr.iptv-playoutcenter.de/tvaktuellr/tvaktuellr.stream_1/playlist.m3u8
 #EXTINF:-1 tvg-id="Unserding.de" tvg-logo="https://i.imgur.com/4j4MZTT.png" group-title="DE · Regional",Unserding (720p)
@@ -751,7 +807,7 @@ https://bibeltv02.iptv-playoutcenter.de/bibeltv02/bibeltv02.stream_1/playlist.m3
 #EXTINF:-1 tvg-id="EchtJetztTV.de" tvg-logo="https://i.ibb.co/ccNRGVj/download-10.png" group-title="DE · Religion",EchtJetzt TV (1080p)
 https://bibeltv03.iptv-playoutcenter.de/bibeltv03/bibeltv03.stream_all/playlist.m3u8
 #EXTINF:-1 tvg-id="EchtJetztTV.de" tvg-logo="https://i.ibb.co/ccNRGVj/download-10.png" group-title="DE · Religion",EchtJetzt TV (720p)
-https://bibeltv03.iptv-playoutcenter.de/bibeltv03/bibeltv03.stream_all/bibeltv03/bibeltv03.stream_2/chunks.m3u8?nimblesessionid=1470593533
+https://bibeltv03.iptv-playoutcenter.de/bibeltv03/bibeltv03.stream_all/bibeltv03/bibeltv03.stream_2/chunks.m3u8?nimblesessionid=1470621623
 #EXTINF:-1 tvg-id="EWTN.de" tvg-logo="https://i.imgur.com/NXeygNk.png" group-title="DE · Religion",EWTN (1080p)
 https://cdn3.wowza.com/1/ZUkxSDBrZHlMbjVn/ZkhNRFNZ/hls/live/playlist.m3u8
 #EXTINF:-1 tvg-id="EWTN.de" tvg-logo="https://i.imgur.com/NXeygNk.png" group-title="DE · Religion",EWTN (480p)
@@ -766,16 +822,28 @@ https://bild-und-ton.stream/sophiatv-en/smil:sophia-tv-en.smil/playlist.m3u8
 https://jmp2.uk/plu-64b67f0424ade50008a3be17.m3u8
 #EXTINF:-1 tvg-id="DAZNHeldinnenxPlutoTV.de" tvg-logo="https://images.pluto.tv/channels/64afe50c5dc16600087f3227/colorLogoPNG.png" group-title="DE · Sport",DAZN Heldinnen x Pluto TV
 https://jmp2.uk/plu-64afe50c5dc16600087f3227.m3u8
+#EXTINF:-1 tvg-id="FIFAPlusDE.de" tvg-logo="" group-title="DE · Sport",FIFA+ (Deutsch)
+https://4397879b.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWRlX0ZJRkFQbHVzR2VybWFuX0hMUw/playlist.m3u8
 #EXTINF:-1 tvg-id="MoreThanSportsTV.de" tvg-logo="https://i.imgur.com/SLrjImc.png" group-title="DE · Sport",More Than Sports TV (1080p)
 https://mts1.iptv-playoutcenter.de/mts/mts-web/playlist.m3u8
 #EXTINF:-1 tvg-id="MoreThanSportsTV.de" tvg-logo="https://i.imgur.com/SLrjImc.png" group-title="DE · Sport",More Than Sports TV (720p)
-https://mts1.iptv-playoutcenter.de/mts/mts-web/mts/mtsw2/chunks.m3u8?nimblesessionid=600965478
+https://mts1.iptv-playoutcenter.de/mts/mts-web/mts/mtsw2/chunks.m3u8?nimblesessionid=600985654
+#EXTINF:-1 tvg-id="Motorvision.de" tvg-logo="https://i.imgur.com/v4kj8pI.png" group-title="DE · Sport",Motorvision (1080p)
+https://mvg-mv.otteravision.com/mvg/mv/mv_1080p.m3u8
+#EXTINF:-1 tvg-id="PlutoTVMotor.de" tvg-logo="https://i.imgur.com/LSrfnpB.png" group-title="DE · Sport",Pluto TV Motor
+https://jmp2.uk/plu-6080345ebb49b90007ce0baf.m3u8
+#EXTINF:-1 tvg-id="PlutoTVSport.de" tvg-logo="https://i.imgur.com/y22ElOr.png" group-title="DE · Sport",Pluto TV Sport
+https://jmp2.uk/plu-608030eff4b6f70007e1684c.m3u8
+#EXTINF:-1 tvg-id="RedBullTV.de" tvg-logo="" group-title="DE · Sport",Red Bull TV (1080p)
+https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8
+#EXTINF:-1 tvg-id="RedBullTV.de" tvg-logo="" group-title="DE · Sport",Red Bull TV (720p)
+https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master_3360.m3u8
 #EXTINF:-1 tvg-id="Sport1.de" tvg-logo="https://i.imgur.com/Tsjt7v9.png" group-title="DE · Sport",Sport1 (540p)
 https://r.eu.cdn-redge.media/livehls/oeu/mt/live/sport1/live.livx/playlist.m3u8
 #EXTINF:-1 tvg-id="WorldofFreesports.de" tvg-logo="https://i.imgur.com/lta5Mog.png" group-title="DE · Sport",World of Freesports (1080p)
 https://mainstreammedia-worldoffreesportsintl-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-mainstreammediafreesportsintl-rakuten/CDN/master.m3u8
 #EXTINF:-1 tvg-id="WorldofFreesports.de" tvg-logo="https://i.imgur.com/lta5Mog.png" group-title="DE · Sport",World of Freesports (720p)
-https://rakutenaa-mainstreammediafreesportsintl-rakuten-t7dc0.amagi.tv/ts-eu-w1-n2/playlist/rakutenAA-mainstreammediafreesportsintl-rakuten/cb57351c6570648f84c83b78d2f34682bd7b3dcb0e6c886470af4a9765d96300dbf9b9c8fd3ab13c1ec0468a710b6f5a4d109446892054d7ba1cb141453c5728cfffe729a2c05616b7db083429b56a6d09bc5148853a522089a92909833ca7704a46bb5e200564cff95da57603c5800c8b627c8df8df7c387c0c5e82545ce6a743f6aab70c46de3ff7b0144a934d09dda67a2d409e8aa0e571ac37f364c663c8d0adda8d59a0a7ab51dc3292f88dc54007ffa56c81c64db3a0f5019b6eba4934766fefb19dfa412e80053134070a1fde179d31f7f342a36121ba12914ece57e00ef359f2b01df2eed3db33af2cb5bf36b90f809c2e015b6c703723dbe884f8666e96e6113765cc7fd42b25028197fd398bd91c9aba22cae1274d7888bd4c9588aad8af91834e8e2ac3c3b4c96f190e440b0d8151a7da59ed609d59b8de1f246b48468693418bd38a097e3119c6a356c61c16bc94dad18f4e08cb661a48e12f8c0852229f621e118f4ad894387e862f0ef7576ca9225dea24dbb723f2abdeef646ee73ea6eb218157d367ea3b9938ab8f71d668cb1af5185f85/52/1280x720_3329040/index.m3u8
+https://rakutenaa-mainstreammediafreesportsintl-rakuten-t7dc0.amagi.tv/ts-eu-w1-n2/playlist/rakutenAA-mainstreammediafreesportsintl-rakuten/cb57351c6570648f84c83b78d2f34682bd7b3dcb0e6c886470af4a9765d96300dbf9b9c8fd3ab13c1ec0468a710b6f5a4d109446892054d7ba1cb141453c5728cfffe729a2c05616b7db083429b56a6d09bc5148853a522089a92909833ca7704a46bb5e200564cff959af725497d3598b627c8df8d57c387c0c5e820f5ae6a743a4fde45e40da6bf5b11b1d944d09dda67a2d409e8aa0e571ac37f364c663c8d0adda8d59a0a7ab51dc3292f88dc54007ffa56c81c64db3a0f5019b6eba4934766fefb19dfa412e80053134070a1fde179d31f7f342a36121ba12914ece57e00ef359f2b01df2eed3db33af2cb5bf36b90f809c2e015b6c703723dbe884f8666e96e6113765cc7fd42b25028197fd398bd91c9aba22cae1274d7888bd4c9588aad8af91834e8e2ac3c3b4c96f190e440b0d8151a7da59ed609d59b8de1f246b48468693418bd38a097e3119c6a356c61c16bc94dad18f4e08cb661a48e12f8c0852229f621e118f4ad894387e862f0ef7576ca9225dea24dbb723f2abdeef676e55bf42f311d78953dc8783612264b1bb9a594ab5d44b61/5/1280x720_3329040/index.m3u8
 #EXTINF:-1 tvg-id="AnixePlus.de" tvg-logo="https://i.imgur.com/hvGJ2oa.png" group-title="DE · Unterhaltung",Anixe + (360p)
 https://ma.anixa.tv/clips/stream/anixesd/index.m3u8
 #EXTINF:-1 tvg-id="AnixeHDSerie.de" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Anixe_HD.svg/960px-Anixe_HD.svg.png" group-title="DE · Unterhaltung",Anixe HD Serie (360p)
@@ -824,6 +892,10 @@ https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/master.m3u8
 https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/stream04/streamPlaylist.m3u8
 #EXTINF:-1 tvg-id="EuronewsEnglish.fr" tvg-logo="https://a.jsrdn.com/hls/22886/euronews/extras/1080_logo.png" group-title="EN · News",Euronews English (720p)
 https://cdn-euronews.akamaized.net/live/eds/euronews-en/25002/index.m3u8
+#EXTINF:-1 tvg-id="TRTWorld.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/TRT_World.svg/960px-TRT_World.svg.png" group-title="EN · News",TRT World (1440p)
+https://tv-trtworld.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTWorld.tr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/TRT_World.svg/960px-TRT_World.svg.png" group-title="EN · News",TRT World (720p)
+https://tv-trtworld.medya.trt.com.tr/master_720.m3u8
 #EXTINF:-1 tvg-id="trtantalya.radio.tr" tvg-logo="" group-title="Radyo · TRT",TRT Antalya
 https://radio-trtantalya.live.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="trterzurum.radio.tr" tvg-logo="" group-title="Radyo · TRT",TRT Erzurum
@@ -852,3 +924,75 @@ https://radio-trtturku.live.trt.com.tr/master.m3u8
 https://radio-trtcukurova.live.trt.com.tr/master.m3u8
 #EXTINF:-1 tvg-id="MetropolFM.radio.de" tvg-logo="" group-title="Radyo · Avrupa",Metropol FM (Berlin)
 https://stream.metropolfm.de/metropolfm/mp3-128
+#EXTINF:-1 tvg-id="5MinuteCraft.us" tvg-logo="" group-title="Sanat / Arts",5-Minute Crafts (1080p)
+https://soul-5mincrafteng-rakuten.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="5MinuteCraft.us" tvg-logo="" group-title="Sanat / Arts",5-Minute Crafts (720p)
+https://soul-5mincrafteng-rakuten.amagi.tv/playlist_ea5a09d7_41e57a77.m3u8
+#EXTINF:-1 tvg-id="BobRoss.us" tvg-logo="" group-title="Sanat / Arts",Bob Ross (1080p)
+https://wurlcineverse.global.transmit.live/hls/678863ef58870f59fceabf94/v1/cinedigm_entertainment_corp_thebobrosschannel_1/vizio_us/latest/main/hls/playlist.m3u8
+#EXTINF:-1 tvg-id="BobRoss.us" tvg-logo="" group-title="Sanat / Arts",Bob Ross (720p)
+https://wurlcineverse.global.transmit.live/us-east-1-a/manifest/678863ef58870f59fceabf94/4048cc46-908c-44bf-abaa-3c25baa3a988/v1/cinedigm_entertainment_corp_thebobrosschannel_1/vizio_us/latest/main/hls/video-avc1.640029-mp4a.40.2-3.m3u8?h=720&sessionStart=1795401957317&tlSession=IdmChgSaiUAod36ba3R7EkcsytolnOyQHzwFZ0pOPA_svwFqZtCsksPk-1oT1vKEOMck5ZsoWf-6HJv5BNzPdJMvKImcHaJPa84LysMustvMJqSTkEhuzew_5um3DnPS8pZaN3UEOOGR6Qq9JivNwIiwLbYuKnyQkLIXgg2w1fOOwzyoIBroCeRouwBupbE6j3ETGQ3aShgWgXnBSb2FwCa7wlWNbxSL8imtH53L_KkIehA0db8-s06iIS0aWxLrlqvbDlUTF2JAfot4wIwZ-eBrvvfpjivEViK97Lczc6AAUhUgnCpeC0zXvwVt5zoaBLHl4c37oXHRV6js136RssmsrGD74FTSZjyOcYabSEouYvrQSiZjBue4OGThOnJI9zfZN6VVLBcOpxyCF2NHqpq4Ydxsq_r8BrqTrUN_sT-0cGi3yKSr73ingrTrSJGIM9e0B1c7aj3_wm9Q-cgVeg&tlSessionVer=2&uid=__USER_ID__&w=1280
+#EXTINF:-1 tvg-id="ClassicArtsShowcase.us" tvg-logo="https://i.imgur.com/M6FFkc3.png" group-title="Sanat / Arts",Classic Arts Showcase
+https://classicarts.akamaized.net/hls/live/1024257/CAS/master.m3u8
+#EXTINF:-1 tvg-id="CraftsyTV.us" tvg-logo="" group-title="Sanat / Arts",Craftsy TV (1080p)
+https://linear-492.frequency.stream/dist/stirr/492/hls/master/playlist.m3u8
+#EXTINF:-1 tvg-id="CraftsyTV.us" tvg-logo="" group-title="Sanat / Arts",Craftsy TV (720p)
+https://linear-492.frequency.stream/dist/stirr/492/hls/master/playlist_1280x720.m3u8
+#EXTINF:-1 tvg-id="DIYArt.us" tvg-logo="" group-title="Sanat / Arts",DIY Art (1080p)
+https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/2cafac16-f982-4563-9951-ccd6ab0c2c6b/manifest.m3u8
+#EXTINF:-1 tvg-id="DIYArt.us" tvg-logo="" group-title="Sanat / Arts",DIY Art (720p)
+https://streams2.sofast.tv/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/2cafac16-f982-4563-9951-ccd6ab0c2c6b/ed02a77da2dacc52ac0c3b5902db04e4/1.m3u8
+#EXTINF:-1 tvg-id="PeacefulPiano.us" tvg-logo="" group-title="Sanat / Arts",Peaceful Piano (1080p)
+https://lotus.stingray.com/manifest/ose-807ads-montreal/samsungtvplus/master.m3u8
+#EXTINF:-1 tvg-id="PeacefulPiano.us" tvg-logo="" group-title="Sanat / Arts",Peaceful Piano (432p)
+https://lotus.stingray.com/manifest/ose-807ads-montreal/samsungtvplus/08743786-1b74-3603-8645-3d30d42d812f/690800/manifest.m3u8
+#EXTINF:-1 tvg-id="Qello.us" tvg-logo="" group-title="Sanat / Arts",Qello Concerts (1080p)
+https://lotus.stingray.com/manifest/qello-qello001-montreal/samsungtvplus/master.m3u8
+#EXTINF:-1 tvg-id="Qello.us" tvg-logo="" group-title="Sanat / Arts",Qello Concerts (720p)
+https://lotus.stingray.com/manifest/qello-qello001-montreal/samsungtvplus/f3b3b889-e519-3156-810f-18850e58a304/3291200/manifest.m3u8
+#EXTINF:-1 tvg-id="QwestTVJazz.us" tvg-logo="" group-title="Sanat / Arts",Qwest TV Jazz (1080p)
+https://qwestjazz-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-qwestjazz-rakuten/CDN/master.m3u8
+#EXTINF:-1 tvg-id="QwestTVJazz.us" tvg-logo="" group-title="Sanat / Arts",Qwest TV Jazz (720p)
+https://rakutenaa-qwestjazz-rakuten-7enhv.amagi.tv/ts-eu-w1-n2/playlist/rakutenAA-qwestjazz-rakuten/cb57351c6570648f84c83b78d2f34682bd7b3dcb0e6c886470af4a9765d96300dbf9b9c8fd3ab13c1ec0468a710b6f5a4d109446892054d7ba1cb141453c5728cfffe729a2c05616b7db083429b56a6d09bc5148853a522089a92909833ca7704a46bb5e200564cff959af7154cdd65fdf627c8df8d57c387c0c5e825559b1a143abf9b259468a39f4b5154bc04d09dda67a2d409e8aa0e571ac37f364c663c8d0adda8d59a0a7ab51dc3292f88dc54007ffa56c81c64db3a0f5019b6eba4934766fefb19dfa412e80053134070a1fde179d31f7f342a36121ba12914ece57e00ef359f2b01df2eed3db33af2cb5bf36b90f809c2e015b6c703723dbe884f8666e96e6113765cc7fd42b25028197fd398bd91c9aba22cae1274d7888bd4c9588aad8af91834e8e2ac3c3b4c96f190e440b0d8151a7da59ed609d59b8de1f246b48468693418bd38a097e3119c6a356c61c16bc94dad18f4e08cb661a48e12f8c0852229f621e118f4ad894387e862f0ef7576ca9225dea24dbb723f2abdeef6463e43ea6c74e8157d379a75941d4eb7a1ee0ed5e68e67c79d2/81/1280x720_3329040/index.m3u8
+#EXTINF:-1 tvg-id="StingrayClassica.us" tvg-logo="" group-title="Sanat / Arts",Stingray Classica (1080p)
+https://lotus.stingray.com/manifest/classica-cla008-montreal/samsungtvplus/master.m3u8
+#EXTINF:-1 tvg-id="StingrayClassica.us" tvg-logo="" group-title="Sanat / Arts",Stingray Classica (720p)
+https://lotus.stingray.com/manifest/classica-cla008-montreal/samsungtvplus/ab2001ec-760a-3ffc-94e5-f8a15e702859/3291200/manifest.m3u8
+#EXTINF:-1 tvg-id="EurovisionSport.us" tvg-logo="" group-title="Sport (International)",Eurovision Sport (1080p)
+https://amg26268-amg26268c34-amgplt0018.playout.now3.amagi.tv/ts-us-e2-n1/playlist/amg26268-amg26268c34-amgplt0018/playlist.m3u8
+#EXTINF:-1 tvg-id="EurovisionSport.us" tvg-logo="" group-title="Sport (International)",Eurovision Sport (720p)
+https://amg26268-amg26268c34-amgplt0018.playout.now3.amagi.tv/ts-us-e2-n1/playlist/amg26268-amg26268c34-amgplt0018/027a0028-e6e8-11f1-a402-a6422830bc06/195/1280x720_4564560/index.m3u8
+#EXTINF:-1 tvg-id="FIFAPlusEN.us" tvg-logo="" group-title="Sport (International)",FIFA+ (English) (1080p)
+https://95cedebd.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/Vml6aW9fRklGQVBsdXNFbmdsaXNoX0hMUw/playlist.m3u8
+#EXTINF:-1 tvg-id="FIFAPlusEN.us" tvg-logo="" group-title="Sport (International)",FIFA+ (English) (720p)
+https://95cedebd.wurl.com/manifest/f36d25e7e52f1ba8d7e56eb859c636563214f541/Vml6aW9fRklGQVBsdXNFbmdsaXNoX0hMUw/6ce2018a-9508-4080-8724-e1c7001fe37a/3.m3u8
+#EXTINF:-1 tvg-id="FuboSports.us" tvg-logo="" group-title="Sport (International)",Fubo Sports (1080p)
+https://dnf08l6u6uxnz.cloudfront.net/master.m3u8
+#EXTINF:-1 tvg-id="FuboSports.us" tvg-logo="" group-title="Sport (International)",Fubo Sports (720p)
+https://dnf08l6u6uxnz.cloudfront.net/5.m3u8
+#EXTINF:-1 tvg-id="MonsterJam.us" tvg-logo="https://images-1.rakuten.tv/storage/global-live-channel/translation/artwork/0734ee9d-7417-4f53-a092-e29d6e8146ee-width200-quality90.jpeg" group-title="Sport (International)",Monster Jam (1080p)
+https://wurlspacemob.global.transmit.live/hls/6791101f0b2848c81efe74d7/v1/answermedia_monsterjam_1/vizio_us/latest/main/hls/playlist.m3u8
+#EXTINF:-1 tvg-id="MonsterJam.us" tvg-logo="https://images-1.rakuten.tv/storage/global-live-channel/translation/artwork/0734ee9d-7417-4f53-a092-e29d6e8146ee-width200-quality90.jpeg" group-title="Sport (International)",Monster Jam (720p)
+https://wurlspacemob.global.transmit.live/us-east-1-a/manifest/6791101f0b2848c81efe74d7/b2ab928b-246b-4230-a17e-e19944cd046c/v1/answermedia_monsterjam_1/vizio_us/latest/main/hls/video-avc1.640029-mp4a.40.2-3.m3u8?h=720&sessionStart=1795401957487&tlSession=w8GFKhkVzd4EV2MQQYALpK1nZNV6C1LMw4S6SatmjvGGbrEgGTZJDFapdy7MId0v0xVx346GpiJHY__eR_1jIABSEnaBRs-6LuzFlYabVVP9_0d3Q9_rdQ2ITNDXCvVC6m3YgZs9I4BHv8_AAuxkAjkSwQWFXsGUELfImH0SJxusifFzSnAOnF1ANyPbfgReFaNPfXyh-VTuIRWb6OG5N-SVTTCIRGtXjTXJ9qn1p9cpRkw9CiPKvgLf2ith0h7p203UvQGvu4HOEeHXOQ--kMXKz6cGhpI5S5KoKYwB5FSqSLs9ZwE4bwIHf5LRKfBCvQZJBM-8zzkXdFro4yRgNzTZMS_0IhYQfe6tohotxcuOUM7PfjooIaH-fs1scj3XHEdkeyq3hVWqVtS4IlIFf1Ddf3dKrTrZlR0GkHAQoIhfifP4kOkzuKZT5OfxUxfyLADBuDB2jMAKLKA&tlSessionVer=2&uid=__USER_ID__&w=1280
+#EXTINF:-1 tvg-id="NHL.us" tvg-logo="" group-title="Sport (International)",NHL Channel (1080p)
+https://nhl-firetv.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="NHL.us" tvg-logo="" group-title="Sport (International)",NHL Channel (720p)
+https://nhl-firetv.amagi.tv/playlist720p.m3u8
+#EXTINF:-1 tvg-id="NHRA.us" tvg-logo="" group-title="Sport (International)",NHRA (1080p)
+https://d265y4sk8257lt.cloudfront.net/nh.m3u8
+#EXTINF:-1 tvg-id="NHRA.us" tvg-logo="" group-title="Sport (International)",NHRA (720p)
+https://d265y4sk8257lt.cloudfront.net/nh_720p.m3u8
+#EXTINF:-1 tvg-id="Overtime.us" tvg-logo="https://i.imgur.com/9S9k4IK.png" group-title="Sport (International)",Overtime (1080p)
+https://d1a8aq6t30gkqj.cloudfront.net/v1/amc_overtime_1/samsungheadend_us/latest/main/hls/playlist_hd.m3u8
+#EXTINF:-1 tvg-id="Overtime.us" tvg-logo="https://i.imgur.com/9S9k4IK.png" group-title="Sport (International)",Overtime (720p)
+https://d1a8aq6t30gkqj.cloudfront.net/v1/amc_overtime_1/samsungheadend_us/V00000001/0/HLS/playlist_hd_1280x720.m3u8
+#EXTINF:-1 tvg-id="PGATour.us" tvg-logo="https://i.imgur.com/J0TY9dG.png" group-title="Sport (International)",PGA Tour (1080p)
+https://d11k1mnrgfposz.cloudfront.net/playlist.m3u8
+#EXTINF:-1 tvg-id="PGATour.us" tvg-logo="https://i.imgur.com/J0TY9dG.png" group-title="Sport (International)",PGA Tour (720p)
+https://d11k1mnrgfposz.cloudfront.net/playlist_1280x720.m3u8
+#EXTINF:-1 tvg-id="RallyTV.us" tvg-logo="https://i.postimg.cc/WtLq2C7c/logo-Rally-Tv1.png" group-title="Sport (International)",Rally TV
+https://rally-tv-live.akamaized.net/hls/live/2117704/RallyTV-Pri/master.m3u8
+#EXTINF:-1 tvg-id="Stadium.us" tvg-logo="https://i.imgur.com/SnZOiER.png" group-title="Sport (International)",Stadium (1080p)
+https://wurl120sports.global.transmit.live/hls/6865b0ce3b41686108809e5a/v1/stadium_gracenote/vizio_us/latest/main/hls/playlist.m3u8
+#EXTINF:-1 tvg-id="Stadium.us" tvg-logo="https://i.imgur.com/SnZOiER.png" group-title="Sport (International)",Stadium (720p)
+https://wurl120sports.global.transmit.live/us-east-1-b/manifest/6865b0ce3b41686108809e5a/b2bb9839-92ab-43e2-9dc0-44179203e12d/v1/stadium_gracenote/vizio_us/latest/main/hls/video-avc1.64001F-mp4a.40.2-4.m3u8?h=720&sessionStart=1795401957840&tlSession=waihL8jmBKpqgyG9BSfAFxTytccu99vJAQ9r4loAyPbCv26m5kVEMpZD5b3ymvKTIeevliVAVDjs8611Qrh696LSiGVi5ZBhMFSrXcMBMj3MzLgSlr1iDLXFJzErGb_nZJLoRiGXPmuCUHv0Q5uDm9gCe1mjUJtUf6hYSzahYtUP-5Tlxgy0ujtAPBvmv9FR5oWoh9e7crxqmElo6LCyYr0qVlz1dQX3q7mjG0AVKLVtjNguqnwWJlZNkCBpoT6G1sGPi5vGh9tKq77LxZVERGgsIBhIURHk_PpNQR53j2W6tapBiVfrlOf9dLMWx7cP7AhvhXih0iBriOQvLAR4_DTb5Pyx7WPE0RIBpMPg1-lRSdV1iPo-hN1s9rAXb5RQsBqEfZ7BtajC_6tdVmCekoDn5bpxNXahju9IZ0QNwTD1dKUOsWgt7AhWYr4MS3lk2QW0Bg581ZwS3hNOMqR78FMoAi3oJyqZzGtdrHWCoQ_z-HNi6U36Rd3yHqKRN61lDFai_NnBZjyeuvfsH51-YJJoXkY9PUfFq4HAhYmJ6gyOVtdxY47CaE2MzNB1XHf8a5Nurb4iyLbn19QBxr2vyYLKnMMSvrKYQGPuH-9FrvP8DxGdHf5klCOIUyVAuLP0xx-_jGtjtg&tlSessionVer=2&uid=__USER_ID__&w=1280

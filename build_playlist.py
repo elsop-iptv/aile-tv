@@ -35,7 +35,8 @@ TR_SPOR, DE_SPORT = "TR · Spor", "DE · Sport"
 EN_GROUP = "EN · News"
 EN_ALSO = {"TRTWorld.tr"}  # TRT'de de durur, ayrica Ingilizce haber grubunda
 SPOR_NAME = re.compile(r"Spor|Sport|TJK|Motor", re.I)
-BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "ZDFinfo.de"]
+BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "ZDFinfo.de",
+            "GZT.tr", "AgroTV.tr"]
 # ARD/ZDF grubunda durur, ayrica Almanca haber grubunda da gosterilir
 DE_NEWS_ALSO = {"phoenix.de", "tagesschau24.de"}
 DEFAULT_UA = "Mozilla/5.0 (Linux; Android 12; Google TV) AppleWebKit/537.36 Chrome/120 Safari/537.36"
@@ -96,6 +97,8 @@ _DE_PLUTO = [
     ("FlussMonster.de", "Fluss-Monster", "documentary", DE_DOKU, "62a0b2aff4cf470007e47e29"),
     ("FarmlandTV.de", "Farmland TV", "documentary", DE_DOKU, "663a15d7cb3ea10008edac88"),
     ("SpaceLive.de", "Space Live", "documentary", DE_DOKU, "69a554497ed3b3fff0b9ca80"),
+    ("PlutoTVSport.de", "Pluto TV Sport", "sports", DE_SPORT, "608030eff4b6f70007e1684c"),
+    ("PlutoTVMotor.de", "Pluto TV Motor", "sports", DE_SPORT, "6080345ebb49b90007ce0baf"),
 ]
 for _cid, _name, _cat, _grp, _pid in _DE_PLUTO:
     EXTRA_STREAMS.append({"channel": _cid, "url": f"https://jmp2.uk/plu-{_pid}.m3u8", "quality": ""})
@@ -124,10 +127,71 @@ EXTRA_CHANNELS = {
 }
 for _cid, _name, _cat, _grp, _pid in _DE_PLUTO:
     EXTRA_CHANNELS[_cid] = {"id": _cid, "name": _name, "country": "DE", "side": "DE", "categories": [_cat], "group": _grp}
+
+# Ek kanallar (resmi / ucretsiz yayinlar): (id, ad, url, kalite, ulke, taraf, kategori, grup)
+TR_EKONOMI, TR_YEREL = "TR · Ekonomi", "TR · Yerel"
+SANAT_GROUP = "Sanat / Arts"
+INT_SPORT = "Sport (International)"
+_TB = "https://edge1.taksimbilisim.com/{}/bant1/playlist.m3u8"
+_NEW_CHANNELS = [
+    # TRT / tabii
+    ("TabiiTV.tr", "tabii TV", "https://ceokzokgtd.erbvr.com/tabiitv/tabiitv.m3u8", "1080p", "TR", "TR", "general", "TR · TRT"),
+    ("TRTWorld.tr", "TRT World", "https://tv-trtworld.medya.trt.com.tr/master.m3u8", "", "TR", "TR", "news", "TR · TRT"),
+    ("TRTKurdi.tr", "TRT Kurdî", "https://tv-trtkurdi.medya.trt.com.tr/master.m3u8", "", "TR", "TR", "general", "TR · TRT"),
+    # Belgesel
+    ("GZT.tr", "GZT", "https://gzttv-live.lg.mncdn.com/gzttv-live/gzttv/playlist.m3u8", "1080p", "TR", "TR", "documentary", TR_BELGESEL),
+    ("AgroTV.tr", "Agro TV", "https://agro.fatihdemirsoy.com:8181/memfs/master.m3u8", "1080p", "TR", "TR", "documentary", TR_BELGESEL),
+    # Ekonomi / Haber
+    ("APara.tr", "A Para", "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/apara/apara.m3u8", "1080p", "TR", "TR", "business", TR_EKONOMI),
+    ("TV100.tr", "TV100", "https://tv.ensonhaber.com/tv100/tv100.m3u8", "", "TR", "TR", "news", "TR · Haber"),
+    # Yerel (Ordu & Rize once)
+    ("AltasTV.tr", "Altaş TV (Ordu)", _TB.format("altastv"), "720p", "TR", "TR", "general", TR_YEREL),
+    ("TV52.tr", "TV 52 (Ordu)", _TB.format("tv52"), "720p", "TR", "TR", "general", TR_YEREL),
+    ("CayTV.tr", "Çay TV (Rize)", _TB.format("caytv"), "720p", "TR", "TR", "general", TR_YEREL),
+    ("ETVManisa.tr", "ETV Manisa", _TB.format("manisaetv"), "1080p", "TR", "TR", "general", TR_YEREL),
+    ("IcelTV.tr", "İçel TV", _TB.format("iceltv"), "1080p", "TR", "TR", "general", TR_YEREL),
+    ("Kanal32.tr", "Kanal 32", _TB.format("kanal32"), "720p", "TR", "TR", "general", TR_YEREL),
+    ("LineTV.tr", "Line TV", _TB.format("linetv"), "720p", "TR", "TR", "general", TR_YEREL),
+    ("MTurkTV.tr", "Muğla Türk TV", _TB.format("muglaturk"), "720p", "TR", "TR", "general", TR_YEREL),
+    ("GuneydoguTV.tr", "Güneydoğu TV", _TB.format("gtv"), "720p", "TR", "TR", "general", TR_YEREL),
+    ("KanalUrfa.tr", "Kanal Urfa", _TB.format("kanalurfa"), "", "TR", "TR", "general", TR_YEREL),
+    ("TV1.tr", "TV1", _TB.format("tv1"), "720p", "TR", "TR", "general", TR_YEREL),
+    ("NaturalTV.tr", "Natural TV", _TB.format("naturaltv"), "1080p", "TR", "TR", "documentary", TR_BELGESEL),
+    # Sanat / Arts
+    ("ClassicArtsShowcase.us", "Classic Arts Showcase", "https://classicarts.akamaized.net/hls/live/1024257/CAS/master.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    ("StingrayClassica.us", "Stingray Classica", "https://lotus.stingray.com/manifest/classica-cla008-montreal/samsungtvplus/master.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    ("PeacefulPiano.us", "Peaceful Piano", "https://lotus.stingray.com/manifest/ose-807ads-montreal/samsungtvplus/master.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    ("Qello.us", "Qello Concerts", "https://lotus.stingray.com/manifest/qello-qello001-montreal/samsungtvplus/master.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    ("QwestTVJazz.us", "Qwest TV Jazz", "https://qwestjazz-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-qwestjazz-rakuten/CDN/master.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    ("BobRoss.us", "Bob Ross", "https://wurlcineverse.global.transmit.live/hls/678863ef58870f59fceabf94/v1/cinedigm_entertainment_corp_thebobrosschannel_1/vizio_us/latest/main/hls/playlist.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    ("CraftsyTV.us", "Craftsy TV", "https://linear-492.frequency.stream/dist/stirr/492/hls/master/playlist.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    ("5MinuteCraft.us", "5-Minute Crafts", "https://soul-5mincrafteng-rakuten.amagi.tv/playlist.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    ("DIYArt.us", "DIY Art", "https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/2cafac16-f982-4563-9951-ccd6ab0c2c6b/manifest.m3u8", "", "US", "TR", "culture", SANAT_GROUP),
+    # Almanca spor
+    ("RedBullTV.de", "Red Bull TV", "https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8", "", "DE", "DE", "sports", DE_SPORT),
+    ("FIFAPlusDE.de", "FIFA+ (Deutsch)", "https://4397879b.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWRlX0ZJRkFQbHVzR2VybWFuX0hMUw/playlist.m3u8", "", "DE", "DE", "sports", DE_SPORT),
+    ("Motorvision.de", "Motorvision", "https://mvg-mv.otteravision.com/mvg/mv/mv_1080p.m3u8", "1080p", "DE", "DE", "sports", DE_SPORT),
+    # Uluslararasi spor (Ingilizce)
+    ("FIFAPlusEN.us", "FIFA+ (English)", "https://95cedebd.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/Vml6aW9fRklGQVBsdXNFbmdsaXNoX0hMUw/playlist.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("EurovisionSport.us", "Eurovision Sport", "https://amg26268-amg26268c34-amgplt0018.playout.now3.amagi.tv/ts-us-e2-n1/playlist/amg26268-amg26268c34-amgplt0018/playlist.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("RallyTV.us", "Rally TV", "https://rally-tv-live.akamaized.net/hls/live/2117704/RallyTV-Pri/master.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("PGATour.us", "PGA Tour", "https://d11k1mnrgfposz.cloudfront.net/playlist.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("NHL.us", "NHL Channel", "https://nhl-firetv.amagi.tv/playlist.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("Stadium.us", "Stadium", "https://wurl120sports.global.transmit.live/hls/6865b0ce3b41686108809e5a/v1/stadium_gracenote/vizio_us/latest/main/hls/playlist.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("FuboSports.us", "Fubo Sports", "https://dnf08l6u6uxnz.cloudfront.net/master.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("Overtime.us", "Overtime", "https://d1a8aq6t30gkqj.cloudfront.net/v1/amc_overtime_1/samsungheadend_us/latest/main/hls/playlist_hd.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("MonsterJam.us", "Monster Jam", "https://wurlspacemob.global.transmit.live/hls/6791101f0b2848c81efe74d7/v1/answermedia_monsterjam_1/vizio_us/latest/main/hls/playlist.m3u8", "", "US", "DE", "sports", INT_SPORT),
+    ("NHRA.us", "NHRA", "https://d265y4sk8257lt.cloudfront.net/nh.m3u8", "", "US", "DE", "sports", INT_SPORT),
+]
+for _cid, _name, _url, _q, _country, _side, _cat, _grp in _NEW_CHANNELS:
+    EXTRA_STREAMS.append({"channel": _cid, "url": _url, "quality": _q})
+    EXTRA_CHANNELS[_cid] = {"id": _cid, "name": _name, "country": _country, "side": _side, "categories": [_cat], "group": _grp}
 # iptv-org'da haber kategorisi eksik olan haber kanallari
 NEWS_OVERRIDE = {
     "NTV.tr": "TR · Haber", "SozcuTV.tr": "TR · Haber", "Tele1.tr": "TR · Haber", "TVNET.tr": "TR · Haber",
     "ntv.de": "DE · Nachrichten",
+    # Ekonomi kanallari
+    "BloombergHT.tr": TR_EKONOMI, "CNBCe.tr": TR_EKONOMI, "FinansTurkTV.tr": TR_EKONOMI, "Ekoturk.tr": TR_EKONOMI,
 }
 # propaganda / yabanci dilli haber kanallari
 EXCLUDE_IDS = {"RTDE.ru", "RTDE.de", "MekameleenTV.tr", "AlmahriahTV.tr", "DW.de",  # DW.de: Arapca yayin
@@ -254,12 +318,12 @@ def group_for(ch):
 
 
 _TR_GROUPS = ["TR · TRT", "TR · Haber", "TR · Cocuk", DIZI_GROUP, "TR · Ulusal / Eglence", TR_SPOR, TR_BELGESEL,
-              "TR · Muzik", "TR · Dini", "TR · Kultur / Yasam"]
+              "TR · Muzik", "TR · Dini", "TR · Kultur / Yasam", TR_EKONOMI, TR_YEREL]
 _DE_GROUPS = ["DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder", "DE · Filme / Serien",
               "DE · Unterhaltung", DE_DOKU, DE_SPORT, "DE · Musik", "DE · Religion", "DE · Regional", "DE · Sonstige"]
 # Favoriler en ustte; sonra Turkce gruplar kendi icinde, Almanca gruplar kendi icinde alfabetik
 GROUP_ORDER = (["★ Favoriler"] + sorted(_TR_GROUPS, key=str.casefold) + sorted(_DE_GROUPS, key=str.casefold)
-               + [EN_GROUP, RADYO_GROUP, RADYO_AVRUPA])
+               + [EN_GROUP, RADYO_GROUP, RADYO_AVRUPA, SANAT_GROUP, INT_SPORT])
 
 
 def check(stream):
@@ -428,6 +492,8 @@ def main(out_path="playlist.m3u"):
         if cid in FAVORITES:
             groups.insert(0, "★ Favoriler")
         tr = side_of(ch) == "TR"
+        if groups[-1] in (SANAT_GROUP, INT_SPORT):  # kendi grubunda kalir, kopyalanmaz
+            return [(g, ch, s) for g in groups]
         if tr and (cid in DIZI_FILM or set(ch.get("categories") or []) & {"series", "movies"}):
             groups.append(DIZI_GROUP)
         if side_of(ch) in COUNTRIES and (cid in BELGESEL or "documentary" in (ch.get("categories") or [])):
