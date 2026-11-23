@@ -35,8 +35,9 @@ TR_SPOR, DE_SPORT = "TR · Spor", "DE · Sport"
 EN_GROUP = "EN · News"
 EN_ALSO = {"TRTWorld.tr"}  # TRT'de de durur, ayrica Ingilizce haber grubunda
 SPOR_NAME = re.compile(r"Spor|Sport|TJK|Motor", re.I)
-BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "CuriosityChannel.de",
-            "ORFIII.at", "PlutoTVReportagen.de"]
+BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "ZDFinfo.de"]
+# ARD/ZDF grubunda durur, ayrica Almanca haber grubunda da gosterilir
+DE_NEWS_ALSO = {"phoenix.de", "tagesschau24.de"}
 DEFAULT_UA = "Mozilla/5.0 (Linux; Android 12; Google TV) AppleWebKit/537.36 Chrome/120 Safari/537.36"
 TIMEOUT = 10
 # GitHub sunuculari ABD'de: orada 403 (bolge kisitlamasi) veren link evde calisabilir.
@@ -54,6 +55,7 @@ def is_blocked(url):
 # iptv-org'da olmayan / ek resmi yayinlar
 EXTRA_STREAMS = [
     {"channel": "TVNET.tr", "url": "https://tvnet-live.lg.mncdn.com/tvnet-live/tvnet/playlist.m3u8", "quality": "1080p"},
+    {"channel": "LifeTV.tr", "url": "https://live.artidijitalmedya.com/artidijital_lifetv/lifetv/playlist.m3u8", "quality": "720p"},
     {"channel": "EuronewsGerman.fr", "url": "https://cdn-euronews.akamaized.net/live/eds/euronews-de/25027/index.m3u8", "quality": "720p"},
     {"channel": "EuronewsEnglish.fr", "url": "https://cdn-euronews.akamaized.net/live/eds/euronews-en/25002/index.m3u8", "quality": "720p"},
     # "extra": her zaman ek secenek olarak eklenir (ABD'den 403 verse de Turkiye/Almanya'dan calisabilir)
@@ -65,12 +67,34 @@ EXTRA_STREAMS = [
     {"channel": "TRTSporYildiz.tr", "url": "https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor", "quality": "1080p", "extra": True},
     # DW: Almanca DW TV 2023'te kapandi, DW Turkce'nin TV yayini yok -> resmi DW English
     {"channel": "DWEnglish.de", "url": "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/master.m3u8", "quality": "1080p"},
-    # Almanca kamu / bilgi kanallari (Avusturya, Isvicre, Bundestag)
-    {"channel": "ORFIII.at", "url": "https://orf3.mdn.ors.at/orf/orf3/qxa/manifest.m3u8", "quality": "720p"},
-    {"channel": "ORF2.at", "url": "https://orf2-247.mdn.ors.at/orf/orf2/qxa-247/manifest.m3u8", "quality": "720p"},
+    # Almanca kamu / bilgi kanallari (Isvicre, Bundestag). ORF 2 / ORF III: Avusturya disinda bolge kisitli -> cikarildi
     {"channel": "SRFinfo.ch", "url": "https://r.eu.cdn-redge.media/livehls/oeu/mt/live/srf_info/live.livx/playlist.m3u8", "quality": "720p"},
-    {"channel": "Parlamentsfernsehen2.de", "url": "https://bttv-live-z.r53.cdn.tv1.eu/13014bundestag-hk2/_definst_/live/video/hk2_de.smil/playlist.m3u8", "quality": "720p"},
+    {"channel": "Parlamentsfernsehen2.de", "url": "https://cldf-hlsgw.r53.cdn.tv1.eu/1000153copo/hk2.m3u8", "quality": "1080p"},
+    {"channel": "Parlamentsfernsehen3.de", "url": "https://cldf-hlsgw.r53.cdn.tv1.eu/1000153copo/hk3.m3u8", "quality": "1080p"},
+    {"channel": "Parlamentsfernsehen4.de", "url": "https://cldf-hlsgw.r53.cdn.tv1.eu/1000153copo/hk4.m3u8", "quality": "1080p"},
+    # ORF Kids: iptv-org'da sadece .mpd var
+    {"channel": "ORFKids.at", "url": "https://web12.mdn.ors.at/orf/web12/qxa/manifest.m3u8", "quality": "720p"},
 ]
+
+# Almanca Pluto TV kanallari (iptv-org'da kanal eslesmesi yok / yanlis ulke-dil): (id, ad, kategori, grup, pluto id)
+DE_KINDER = "DE · Kinder"
+_DE_PLUTO = [
+    ("TotallyTurtles.de", "Totally Turtles", "kids", DE_KINDER, "5d6792bd6be2998ad0ccce30"),
+    ("iCarly.de", "iCarly", "kids", DE_KINDER, "5e8b580a233dc90007f0cb9d"),
+    ("NickelodeonToons.de", "Nickelodeon Toons", "kids", DE_KINDER, "5ede448d3d50590007a4419e"),
+    ("NickelodeonTeen.de", "Nickelodeon Teen", "kids", DE_KINDER, "5f0d668b872e4400073acc68"),
+    ("Zoey101.de", "Zoey 101", "kids", DE_KINDER, "63c69e6c4207be0007f73c22"),
+    ("DieThundermans.de", "Die Thundermans", "kids", DE_KINDER, "6447df8cd3fdde0008f1f627"),
+    ("PlutoTVHistory.de", "Pluto TV History", "documentary", DE_DOKU, "5d767b1c126c65d0a307355f"),
+    ("PlutoTVScience.de", "Pluto TV Science", "documentary", DE_DOKU, "5d767b4889bca2ce7b73ef2e"),
+    ("BBCEarth.de", "BBC Earth", "documentary", DE_DOKU, "6a9a89f6ff94431f8bb895d4"),
+    ("SpiegelTV.de", "SPIEGEL TV", "documentary", DE_DOKU, "6576c20fb3801200084786c9"),
+    ("FlussMonster.de", "Fluss-Monster", "documentary", DE_DOKU, "62a0b2aff4cf470007e47e29"),
+    ("FarmlandTV.de", "Farmland TV", "documentary", DE_DOKU, "663a15d7cb3ea10008edac88"),
+    ("SpaceLive.de", "Space Live", "documentary", DE_DOKU, "69a554497ed3b3fff0b9ca80"),
+]
+for _cid, _name, _cat, _grp, _pid in _DE_PLUTO:
+    EXTRA_STREAMS.append({"channel": _cid, "url": f"https://jmp2.uk/plu-{_pid}.m3u8", "quality": ""})
 
 # iptv-org'da ulke disi (FR) olan veya hic olmayan kanallar: grup elle verilir
 RADYO_GROUP = "Radyo · TRT"
@@ -84,18 +108,22 @@ EXTRA_CHANNELS = {
     "EuronewsGerman.fr": {"group": "DE · Nachrichten"},
     "EuronewsEnglish.fr": {"group": EN_GROUP},
     "DWEnglish.de": {"id": "DWEnglish.de", "name": "DW English", "country": "DE", "categories": ["news"], "group": EN_GROUP},
-    "ORFIII.at": {"id": "ORFIII.at", "name": "ORF III", "country": "AT", "side": "DE", "categories": ["culture"], "group": DE_DOKU},
-    "ORF2.at": {"id": "ORF2.at", "name": "ORF 2", "country": "AT", "side": "DE", "categories": ["general"], "group": "DE · ARD / ZDF / Offentlich"},
+    "ORFKids.at": {"id": "ORFKids.at", "name": "ORF Kids", "country": "AT", "side": "DE", "categories": ["kids"], "group": DE_KINDER},
     "SRFinfo.ch": {"id": "SRFinfo.ch", "name": "SRF info", "country": "CH", "side": "DE", "categories": ["news"], "group": "DE · Nachrichten"},
     "Parlamentsfernsehen2.de": {"group": "DE · Nachrichten"},
+    "Parlamentsfernsehen3.de": {"group": "DE · Nachrichten"},
+    "Parlamentsfernsehen4.de": {"group": "DE · Nachrichten"},
 }
+for _cid, _name, _cat, _grp, _pid in _DE_PLUTO:
+    EXTRA_CHANNELS[_cid] = {"id": _cid, "name": _name, "country": "DE", "side": "DE", "categories": [_cat], "group": _grp}
 # iptv-org'da haber kategorisi eksik olan haber kanallari
 NEWS_OVERRIDE = {
     "NTV.tr": "TR · Haber", "SozcuTV.tr": "TR · Haber", "Tele1.tr": "TR · Haber", "TVNET.tr": "TR · Haber",
     "ntv.de": "DE · Nachrichten",
 }
 # propaganda / yabanci dilli haber kanallari
-EXCLUDE_IDS = {"RTDE.ru", "RTDE.de", "MekameleenTV.tr", "AlmahriahTV.tr", "DW.de"}  # DW.de: Arapca yayin
+EXCLUDE_IDS = {"RTDE.ru", "RTDE.de", "MekameleenTV.tr", "AlmahriahTV.tr", "DW.de",  # DW.de: Arapca yayin
+               "CuriosityChannel.de"}  # aslinda SPIEGEL TV Pluto yayini (asagida SPIEGEL TV olarak var)
 for _rid, _name in _TRT_RADIO:
     _cid = f"{_rid}.radio.tr"
     EXTRA_CHANNELS[_cid] = {"id": _cid, "name": _name, "country": "TR", "categories": ["music"], "group": RADYO_GROUP}
@@ -125,6 +153,11 @@ FOREIGN_NAMES = re.compile(
     r"^Pluto TV (Cine|Comedies Cultes)",
     re.I,
 )
+
+# Yayin dili filtresi: Almanca (Isvicre/Bavyera/Luksemburg lehceleri dahil) ve Turkce
+LANG_OK = {"deu", "tur", "gsw", "bar", "ltz"}
+# iptv-org'da dili yanlis girilmis ama Almanca oldugu dogrulanmis kanallar (su an bos)
+LANG_ALLOW_IDS = set()
 
 # Turkce/Almanca olmayan diller: bu dillerde yayin yapan kanallar listeye girmez
 FOREIGN_LANGS = {"rus", "kur", "ara", "fas", "zza", "kmr", "ckb"}
@@ -320,12 +353,12 @@ def main(out_path="playlist.m3u"):
 
     def stream_ok_lang(s):
         # Yayin bazinda dil: Pluto FR/IT/ES vb. Almanca listeye karismasin
-        if s in EXTRA_STREAMS:
+        if s in EXTRA_STREAMS or s.get("channel") in LANG_ALLOW_IDS:
             return True
         L = feed_langs.get((s.get("channel"), s.get("feed"))) if s.get("feed") else None
         if L is None:
             L = main_langs.get(s.get("channel"), set())
-        return not L or bool(L & {"deu", "tur"})
+        return not L or bool(L & LANG_OK)
     for cid in list(channels):
         c = channels[cid]
         if c.get("country") not in COUNTRIES or cid in EXTRA_CHANNELS or c["name"].startswith("Pluto"):
@@ -399,6 +432,8 @@ def main(out_path="playlist.m3u"):
                 groups.append(g)
         if cid in EN_ALSO:
             groups.append(EN_GROUP)
+        if cid in DE_NEWS_ALSO and "DE · Nachrichten" not in groups:
+            groups.append("DE · Nachrichten")
         if group_for(ch) == "TR · TRT" and set(ch.get("categories") or []) & {"kids", "animation"}:
             groups.append("TR · Cocuk")
         return [(g, ch, s) for g in groups]
