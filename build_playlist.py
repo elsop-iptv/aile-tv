@@ -65,7 +65,7 @@ EXTRA_STREAMS = [
     {"channel": "TRTCocuk.tr", "url": "https://tv-trtcocuk.medya.trt.com.tr/master.m3u8", "quality": "1080p", "extra": True},
     {"channel": "TRTSpor.tr", "url": "https://trt.daioncdn.net/trtspor/master.m3u8?app=web&platform=trtspor", "quality": "720p", "extra": True},
     {"channel": "TRTSporYildiz.tr", "url": "https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor", "quality": "1080p", "extra": True},
-    # DW: Almanca DW TV 2023'te kapandi, DW Turkce'nin TV yayini yok -> resmi DW English
+    # DW: Almanca DW TV 2023'te, DW Deutsch+ 2024'te kapandi; DW Turkce sadece YouTube (M3U oynatamaz) -> resmi DW English
     {"channel": "DWEnglish.de", "url": "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/master.m3u8", "quality": "1080p"},
     # Almanca kamu / bilgi kanallari (Isvicre, Bundestag). ORF 2 / ORF III: Avusturya disinda bolge kisitli -> cikarildi
     {"channel": "SRFinfo.ch", "url": "https://r.eu.cdn-redge.media/livehls/oeu/mt/live/srf_info/live.livx/playlist.m3u8", "quality": "720p"},
@@ -74,6 +74,10 @@ EXTRA_STREAMS = [
     {"channel": "Parlamentsfernsehen4.de", "url": "https://cldf-hlsgw.r53.cdn.tv1.eu/1000153copo/hk4.m3u8", "quality": "1080p"},
     # ORF Kids: iptv-org'da sadece .mpd var
     {"channel": "ORFKids.at", "url": "https://web12.mdn.ors.at/orf/web12/qxa/manifest.m3u8", "quality": "720p"},
+    # Almanya'dan Turkce yayin yapan kanallar (gurbetci TV / radyo)
+    {"channel": "KanalAvrupa.de", "url": "https://cdn-kanalavrupa.yayin.com.tr/kanalavrupa/index.m3u8", "quality": "1080p"},
+    {"channel": "YOLTV.de", "url": "https://live.yoltv.com/hls/stream.m3u8", "quality": "720p"},
+    {"channel": "MetropolFM.radio.de", "url": "https://stream.metropolfm.de/metropolfm/mp3-128", "quality": ""},
 ]
 
 # Almanca Pluto TV kanallari (iptv-org'da kanal eslesmesi yok / yanlis ulke-dil): (id, ad, kategori, grup, pluto id)
@@ -98,6 +102,7 @@ for _cid, _name, _cat, _grp, _pid in _DE_PLUTO:
 
 # iptv-org'da ulke disi (FR) olan veya hic olmayan kanallar: grup elle verilir
 RADYO_GROUP = "Radyo · TRT"
+RADYO_AVRUPA = "Radyo · Avrupa"
 _TRT_RADIO = [
     ("trtfm", "TRT FM"), ("trtradyo1", "TRT Radyo 1"), ("trtradyo3", "TRT Radyo 3"), ("trtturku", "TRT Türkü"),
     ("trtnagme", "TRT Nağme"), ("trtradyohaber", "TRT Radyo Haber"), ("trtradyo6", "TRT Radyo 6"),
@@ -113,6 +118,9 @@ EXTRA_CHANNELS = {
     "Parlamentsfernsehen2.de": {"group": "DE · Nachrichten"},
     "Parlamentsfernsehen3.de": {"group": "DE · Nachrichten"},
     "Parlamentsfernsehen4.de": {"group": "DE · Nachrichten"},
+    "KanalAvrupa.de": {"id": "KanalAvrupa.de", "name": "Kanal Avrupa", "country": "DE", "side": "TR", "categories": ["general"], "group": "TR · Ulusal / Eglence"},
+    "YOLTV.de": {"id": "YOLTV.de", "name": "YOL TV", "country": "DE", "side": "TR", "categories": ["culture"], "group": "TR · Kultur / Yasam"},
+    "MetropolFM.radio.de": {"id": "MetropolFM.radio.de", "name": "Metropol FM (Berlin)", "country": "DE", "side": "TR", "categories": ["music"], "group": RADYO_AVRUPA},
 }
 for _cid, _name, _cat, _grp, _pid in _DE_PLUTO:
     EXTRA_CHANNELS[_cid] = {"id": _cid, "name": _name, "country": "DE", "side": "DE", "categories": [_cat], "group": _grp}
@@ -251,7 +259,7 @@ _DE_GROUPS = ["DE · ARD / ZDF / Offentlich", "DE · Nachrichten", "DE · Kinder
               "DE · Unterhaltung", DE_DOKU, DE_SPORT, "DE · Musik", "DE · Religion", "DE · Regional", "DE · Sonstige"]
 # Favoriler en ustte; sonra Turkce gruplar kendi icinde, Almanca gruplar kendi icinde alfabetik
 GROUP_ORDER = (["★ Favoriler"] + sorted(_TR_GROUPS, key=str.casefold) + sorted(_DE_GROUPS, key=str.casefold)
-               + [EN_GROUP, RADYO_GROUP])
+               + [EN_GROUP, RADYO_GROUP, RADYO_AVRUPA])
 
 
 def check(stream):
@@ -266,7 +274,7 @@ def check(stream):
                 return 0
             head = r.read(4096)
             ctype = r.headers.get("Content-Type", "")
-            ok = b"#EXTM3U" in head or "video" in ctype or "mpegurl" in ctype.lower() or head[:1] == b"G"
+            ok = b"#EXTM3U" in head or "video" in ctype or "audio" in ctype or "mpegurl" in ctype.lower() or head[:1] == b"G"
             return 2 if ok else 0
     except urllib.error.HTTPError as e:
         return 1 if GEO_TOLERANT and e.code in (403, 451) else 0
