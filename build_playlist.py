@@ -35,7 +35,8 @@ TR_SPOR, DE_SPORT = "TR · Spor", "DE · Sport"
 EN_GROUP = "EN · News"
 EN_ALSO = {"TRTWorld.tr"}  # TRT'de de durur, ayrica Ingilizce haber grubunda
 SPOR_NAME = re.compile(r"Spor|Sport|TJK|Motor", re.I)
-BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "CuriosityChannel.de"]
+BELGESEL = ["TRTBelgesel.tr", "TGRTBelgesel.tr", "CiftciTV.tr", "ARDalpha.de", "phoenix.de", "arte.de", "CuriosityChannel.de",
+            "ORFIII.at", "PlutoTVReportagen.de"]
 DEFAULT_UA = "Mozilla/5.0 (Linux; Android 12; Google TV) AppleWebKit/537.36 Chrome/120 Safari/537.36"
 TIMEOUT = 10
 # GitHub sunuculari ABD'de: orada 403 (bolge kisitlamasi) veren link evde calisabilir.
@@ -62,6 +63,13 @@ EXTRA_STREAMS = [
     {"channel": "TRTCocuk.tr", "url": "https://tv-trtcocuk.medya.trt.com.tr/master.m3u8", "quality": "1080p", "extra": True},
     {"channel": "TRTSpor.tr", "url": "https://trt.daioncdn.net/trtspor/master.m3u8?app=web&platform=trtspor", "quality": "720p", "extra": True},
     {"channel": "TRTSporYildiz.tr", "url": "https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor", "quality": "1080p", "extra": True},
+    # DW: Almanca DW TV 2023'te kapandi, DW Turkce'nin TV yayini yok -> resmi DW English
+    {"channel": "DWEnglish.de", "url": "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/master.m3u8", "quality": "1080p"},
+    # Almanca kamu / bilgi kanallari (Avusturya, Isvicre, Bundestag)
+    {"channel": "ORFIII.at", "url": "https://orf3.mdn.ors.at/orf/orf3/qxa/manifest.m3u8", "quality": "720p"},
+    {"channel": "ORF2.at", "url": "https://orf2-247.mdn.ors.at/orf/orf2/qxa-247/manifest.m3u8", "quality": "720p"},
+    {"channel": "SRFinfo.ch", "url": "https://r.eu.cdn-redge.media/livehls/oeu/mt/live/srf_info/live.livx/playlist.m3u8", "quality": "720p"},
+    {"channel": "Parlamentsfernsehen2.de", "url": "https://bttv-live-z.r53.cdn.tv1.eu/13014bundestag-hk2/_definst_/live/video/hk2_de.smil/playlist.m3u8", "quality": "720p"},
 ]
 
 # iptv-org'da ulke disi (FR) olan veya hic olmayan kanallar: grup elle verilir
@@ -75,6 +83,11 @@ _TRT_RADIO = [
 EXTRA_CHANNELS = {
     "EuronewsGerman.fr": {"group": "DE · Nachrichten"},
     "EuronewsEnglish.fr": {"group": EN_GROUP},
+    "DWEnglish.de": {"id": "DWEnglish.de", "name": "DW English", "country": "DE", "categories": ["news"], "group": EN_GROUP},
+    "ORFIII.at": {"id": "ORFIII.at", "name": "ORF III", "country": "AT", "side": "DE", "categories": ["culture"], "group": DE_DOKU},
+    "ORF2.at": {"id": "ORF2.at", "name": "ORF 2", "country": "AT", "side": "DE", "categories": ["general"], "group": "DE · ARD / ZDF / Offentlich"},
+    "SRFinfo.ch": {"id": "SRFinfo.ch", "name": "SRF info", "country": "CH", "side": "DE", "categories": ["news"], "group": "DE · Nachrichten"},
+    "Parlamentsfernsehen2.de": {"group": "DE · Nachrichten"},
 }
 # iptv-org'da haber kategorisi eksik olan haber kanallari
 NEWS_OVERRIDE = {
@@ -82,7 +95,7 @@ NEWS_OVERRIDE = {
     "ntv.de": "DE · Nachrichten",
 }
 # propaganda / yabanci dilli haber kanallari
-EXCLUDE_IDS = {"RTDE.ru", "RTDE.de", "MekameleenTV.tr", "AlmahriahTV.tr"}
+EXCLUDE_IDS = {"RTDE.ru", "RTDE.de", "MekameleenTV.tr", "AlmahriahTV.tr", "DW.de"}  # DW.de: Arapca yayin
 for _rid, _name in _TRT_RADIO:
     _cid = f"{_rid}.radio.tr"
     EXTRA_CHANNELS[_cid] = {"id": _cid, "name": _name, "country": "TR", "categories": ["music"], "group": RADYO_GROUP}
@@ -294,12 +307,25 @@ def main(out_path="playlist.m3u"):
         channels.pop(cid, None)
     # Dil bilgisi (feeds.json): Almanya'dan Turkce yayin yapanlar TR tarafina,
     # Turkce/Almanca olmayan dillerde yayin yapanlar listeden cikar.
-    langs = {}
+    langs, feed_langs, main_langs = {}, {}, {}
     try:
         for f in fetch_json("feeds.json"):
-            langs.setdefault(f.get("channel"), set()).update(f.get("languages") or [])
+            fl = set(f.get("languages") or [])
+            langs.setdefault(f.get("channel"), set()).update(fl)
+            feed_langs[(f.get("channel"), f.get("id"))] = fl
+            if f.get("is_main"):
+                main_langs[f.get("channel")] = fl
     except Exception:
         pass
+
+    def stream_ok_lang(s):
+        # Yayin bazinda dil: Pluto FR/IT/ES vb. Almanca listeye karismasin
+        if s in EXTRA_STREAMS:
+            return True
+        L = feed_langs.get((s.get("channel"), s.get("feed"))) if s.get("feed") else None
+        if L is None:
+            L = main_langs.get(s.get("channel"), set())
+        return not L or bool(L & {"deu", "tur"})
     for cid in list(channels):
         c = channels[cid]
         if c.get("country") not in COUNTRIES or cid in EXTRA_CHANNELS or c["name"].startswith("Pluto"):
@@ -328,7 +354,8 @@ def main(out_path="playlist.m3u"):
         and not FOREIGN_NAMES.search(c["name"])
         and not PAID_OR_FOREIGN.search(c["name"])
     }
-    candidates = [s for s in streams + EXTRA_STREAMS if s.get("channel") in wanted and not is_blocked(s["url"])]
+    candidates = [s for s in streams + EXTRA_STREAMS
+                  if s.get("channel") in wanted and not is_blocked(s["url"]) and stream_ok_lang(s)]
     print(f"{len(wanted)} kanal, {len(candidates)} link test ediliyor...")
 
     with ThreadPoolExecutor(max_workers=40) as ex:
